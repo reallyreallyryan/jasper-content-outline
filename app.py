@@ -187,6 +187,23 @@ async def jasper_status(username: str = Depends(verify_team_access)):
         "expertise": jasper.expertise
     }
     
+@app.get("/debug")
+async def debug_files():
+    """Debug route to check what files exist"""
+    import os
+    try:
+        files = os.listdir(".")
+        static_exists = os.path.exists("static")
+        static_files = os.listdir("static") if static_exists else []
+        
+        return {
+            "current_directory": os.getcwd(),
+            "files_in_root": files,
+            "static_folder_exists": static_exists,
+            "static_files": static_files
+        }
+    except Exception as e:
+        return {"error": str(e)}
 
 if __name__ == "__main__":
     import uvicorn
