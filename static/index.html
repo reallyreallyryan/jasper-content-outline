@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jasper - Your SEO Assistant</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🤖</span>
+                <h1>Jasper</h1>
+                <span class="tagline">Your SEO Assistant</span>
+            </div>
+            <div id="status-indicator" class="status-indicator">
+                <span id="status-text">Checking status...</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="input-section">
+                <div class="card">
+                    <h2>👤 Client Information</h2>
+                    <div class="form-group">
+                        <label for="clientName">Practice Name</label>
+                        <input type="text" id="clientName" placeholder="e.g., Austin Heart Center">
+                    </div>
+                    <div class="form-group">
+                        <label for="specialty">Medical Specialty</label>
+                        <input type="text" id="specialty" placeholder="e.g., Cardiothoracic Surgery">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" placeholder="e.g., Austin, TX">
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>🎯 Blog Topic</h2>
+                    <div class="form-group">
+                        <label for="blogTopic">What should Jasper write about?</label>
+                        <textarea id="blogTopic" placeholder="e.g., Minimally Invasive Heart Surgery" rows="3"></textarea>
+                    </div>
+                    <button id="generateBtn" class="generate-btn" onclick="generateContent()">
+                        <span id="btnText">Let Jasper Work His Magic ✨</span>
+                        <div id="loader" class="loader hidden"></div>
+                    </button>
+                </div>
+            </div>
+
+            <div class="output-section">
+                <div id="output-container" class="hidden">
+                    <div class="card output-card">
+                        <div class="output-header">
+                            <h2>Jasper's SEO Masterpiece 🎨</h2>
+                            <button id="downloadBtn" class="download-btn" onclick="downloadContent()">
+                                📥 Download
+                            </button>
+                        </div>
+                        
+                        <div id="content-output"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
