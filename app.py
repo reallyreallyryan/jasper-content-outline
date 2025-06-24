@@ -4,7 +4,7 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
-import openai
+from openai import OpenAI
 import os
 import json
 from dotenv import load_dotenv
@@ -16,6 +16,9 @@ app = FastAPI(title="Jasper - Your SEO Assistant", version="1.0.0")
 
 # Mount static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# Set up OpenAI
+openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # 🔒 Security Setup
 security = HTTPBasic()
@@ -41,8 +44,6 @@ def verify_team_access(credentials: HTTPBasicCredentials = Depends(security)):
         )
     return credentials.username
 
-# Set up OpenAI
-openai.api_key = os.getenv("OPENAI_API_KEY")
 
 class ContentRequest(BaseModel):
     blog_topic: str
@@ -105,7 +106,7 @@ Example H3 format:
 """
         
         try:
-            response = openai.chat.completions.create(
+            response = openai_client.chat.completions.create(
                 model="gpt-4",
                 messages=[
                     {
