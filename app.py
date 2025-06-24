@@ -173,7 +173,7 @@ async def generate_content(request: ContentRequest, username: str = Depends(veri
     
     result = jasper.generate_content_outline(request)
     return result
-    pass
+    
 
 @app.get("/jasper-status")
 async def jasper_status(username: str = Depends(verify_team_access)):
@@ -185,7 +185,7 @@ async def jasper_status(username: str = Depends(verify_team_access)):
         "personality": jasper.personality,
         "expertise": jasper.expertise
     }
-    pass
+    
 
 if __name__ == "__main__":
     import uvicorn
