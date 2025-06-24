@@ -1,4 +1,6 @@
-from fastapi import FastAPI, HTTPException
+import secrets
+from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
@@ -14,6 +16,30 @@ app = FastAPI(title="Jasper - Your SEO Assistant", version="1.0.0")
 
 # Mount static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+# 🔒 Security Setup
+security = HTTPBasic()
+TEAM_USERNAME = "jasper-team"
+TEAM_PASSWORD = "jasper-content-2024"  # Change if you want
+
+def verify_team_access(credentials: HTTPBasicCredentials = Depends(security)):
+    current_username_bytes = credentials.username.encode("utf8")
+    correct_username_bytes = TEAM_USERNAME.encode("utf8")
+    is_correct_username = secrets.compare_digest(
+        current_username_bytes, correct_username_bytes
+    )
+    current_password_bytes = credentials.password.encode("utf8")
+    correct_password_bytes = TEAM_PASSWORD.encode("utf8")
+    is_correct_password = secrets.compare_digest(
+        current_password_bytes, correct_password_bytes
+    )
+    if not (is_correct_username and is_correct_password):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Access denied - Contact team lead for credentials",
+            headers={"WWW-Authenticate": "Basic"},
+        )
+    return credentials.username
 
 # Set up OpenAI
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -133,24 +159,25 @@ Example H3 format:
 jasper = JasperAssistant()
 
 @app.get("/", response_class=HTMLResponse)
-async def home():
-    """Serve Jasper's interface"""
+async def home(username: str = Depends(verify_team_access)):
+    """Serve the main interface - now protected"""
     with open("static/index.html", "r") as f:
         return HTMLResponse(content=f.read())
 
 @app.post("/generate-content")
-async def generate_content(request: ContentRequest):
-    """Jasper generates SEO content outlines"""
+async def generate_content(request: ContentRequest, username: str = Depends(verify_team_access)):
+    """Generate content - now protected"""
     
     if not request.blog_topic.strip():
         raise HTTPException(status_code=400, detail="Jasper needs a blog topic to work with!")
     
     result = jasper.generate_content_outline(request)
     return result
+    pass
 
 @app.get("/jasper-status")
-async def jasper_status():
-    """Check if Jasper is ready to work"""
+async def jasper_status(username: str = Depends(verify_team_access)):
+    """Check status - now protected"""
     api_key_set = bool(os.getenv("OPENAI_API_KEY"))
     return {
         "status": "ready" if api_key_set else "needs_api_key",
@@ -158,6 +185,7 @@ async def jasper_status():
         "personality": jasper.personality,
         "expertise": jasper.expertise
     }
+    pass
 
 if __name__ == "__main__":
     import uvicorn
