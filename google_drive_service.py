@@ -35,8 +35,9 @@ class JasperGoogleDriveService:
     def setup_services(self):
         """Initialize Google Drive and Docs services - works locally AND on Render!"""
         try:
-            # Check if running on Render (with environment variable)
+            # Check if running on Render (with environment variables)
             google_creds_json = os.getenv("GOOGLE_CREDENTIALS_JSON")
+            google_token_json = os.getenv("GOOGLE_TOKEN_JSON")
             
             if google_creds_json and not os.path.exists(self.credentials_file):
                 # Running on Render - create credentials file from environment
@@ -44,9 +45,16 @@ class JasperGoogleDriveService:
                 with open(self.credentials_file, 'w') as f:
                     f.write(google_creds_json)
             
+            if google_token_json and not os.path.exists(self.token_file):
+                # Running on Render - create token file from environment
+                print("🌐 Render detected - creating token from environment variable")
+                with open(self.token_file, 'w') as f:
+                    f.write(google_token_json)
+            
             # Load existing token
             if os.path.exists(self.token_file):
                 self.creds = Credentials.from_authorized_user_file(self.token_file, self.SCOPES)
+            
             
             # If no valid credentials, get new ones
             if not self.creds or not self.creds.valid:
