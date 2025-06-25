@@ -158,12 +158,8 @@ try:
     google_drive_service = JasperGoogleDriveService()
     GOOGLE_DRIVE_ENABLED = True
     print("✅ Google Drive integration enabled!")
-except ImportError as e:
-    print(f"⚠️ Google Drive integration not available: {e}")
-    google_drive_service = None
-    GOOGLE_DRIVE_ENABLED = False
 except Exception as e:
-    print(f"⚠️ Google Drive setup issue: {e}")
+    print(f"⚠️ Google Drive not available: {e}")
     google_drive_service = None
     GOOGLE_DRIVE_ENABLED = False
 
@@ -355,10 +351,13 @@ async def get_client_details(client_id: str, username: str = Depends(verify_team
 # GOOGLE DRIVE ENDPOINTS! 📄🚀
 @app.post("/create-google-doc")
 async def create_google_doc(request: GoogleDocRequest, username: str = Depends(verify_team_access)):
-    """Create a Google Doc with the blog assignment - THE MAGIC ENDPOINT! ✨"""
-    
-    if not GOOGLE_DRIVE_ENABLED:
-        raise HTTPException(status_code=503, detail="Google Drive integration not available")
+    if not GOOGLE_DRIVE_ENABLED or not google_drive_service:
+        return {
+            "success": False,
+            "error": "Google Drive not configured on this server. Feature available locally only."
+        }
+
+    # ... rest of the endpoint
     
     if not request.blog_topic.strip():
         raise HTTPException(status_code=400, detail="Jasper needs a blog topic to work with!")
