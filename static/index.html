@@ -23,19 +23,62 @@
         <!-- Main Content -->
         <main class="main-content">
             <div class="input-section">
+                <!-- NEW CLIENT SELECTOR CARD -->
+                <div class="card client-selector-card">
+                    <h2>🏥 Select Client</h2>
+                    <div class="form-group">
+                        <label for="clientSelector">Choose a client profile (or fill manually below)</label>
+                        <select id="clientSelector" onchange="handleClientSelection()">
+                            <option value="">Select a client...</option>
+                        </select>
+                        <div id="client-loading" class="client-loading hidden">
+                            <div class="mini-loader"></div>
+                            <span>Loading clients...</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Client Preview -->
+                    <div id="client-preview" class="client-preview hidden">
+                        <div class="client-preview-header">
+                            <h4 id="selected-client-name">Client Name</h4>
+                            <span id="selected-client-specialty">Specialty</span>
+                        </div>
+                        <div class="client-preview-details">
+                            <div class="client-detail">
+                                <span class="detail-label">📍 Location:</span>
+                                <span id="selected-client-location">Location</span>
+                            </div>
+                            <div class="client-detail">
+                                <span class="detail-label">🎯 Target:</span>
+                                <span id="selected-client-audience">Target Audience</span>
+                            </div>
+                            <div class="client-detail">
+                                <span class="detail-label">🗣️ Voice:</span>
+                                <span id="selected-client-voice">Brand Voice</span>
+                            </div>
+                        </div>
+                        <div class="smart-generation-badge">
+                            🧠 Smart Generation Enabled
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card">
                     <h2>👤 Client Information</h2>
                     <div class="form-group">
                         <label for="clientName">Practice Name</label>
                         <input type="text" id="clientName" placeholder="e.g., Austin Heart Center">
+                        <small class="field-hint">Auto-populated when you select a client above</small>
                     </div>
                     <div class="form-group">
                         <label for="specialty">Medical Specialty</label>
                         <input type="text" id="specialty" placeholder="e.g., Cardiothoracic Surgery">
+                        <small class="field-hint">Auto-populated when you select a client above</small>
                     </div>
                     <div class="form-group">
                         <label for="location">Location</label>
                         <input type="text" id="location" placeholder="e.g., Austin, TX">
+                        <small class="field-hint">Auto-populated when you select a client above</small>
                     </div>
                 </div>
 
@@ -57,9 +100,12 @@
                     <div class="card output-card">
                         <div class="output-header">
                             <h2>Jasper's SEO Masterpiece 🎨</h2>
-                            <button id="downloadBtn" class="download-btn" onclick="downloadContent()">
-                                📥 Download
-                            </button>
+                            <div class="output-actions">
+                                <div id="smart-badge" class="smart-badge hidden">🧠 Client-Smart</div>
+                                <button id="downloadBtn" class="download-btn" onclick="downloadContent()">
+                                    📥 Download
+                                </button>
+                            </div>
                         </div>
                         
                         <div id="content-output"></div>
@@ -69,6 +115,339 @@
         </main>
     </div>
 
-    <script src="/static/script.js"></script>
+    <script>
+        // Jasper's Enhanced Frontend Brain - Now Client-Smart! 🧠
+        let jasperStatus = 'unknown';
+        let generatedContent = null;
+        let availableClients = [];
+        let selectedClientId = null;
+
+        // Check Jasper's status and load clients when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            checkJasperStatus();
+            loadAvailableClients();
+        });
+
+        async function checkJasperStatus() {
+            try {
+                const response = await fetch('/jasper-status');
+                const data = await response.json();
+                
+                jasperStatus = data.status;
+                const statusElement = document.getElementById('status-text');
+                const statusIndicator = document.getElementById('status-indicator');
+                
+                if (data.status === 'ready') {
+                    if (data.client_profiles_loaded > 0) {
+                        statusElement.textContent = `🟢 Jasper is ready with ${data.client_profiles_loaded} client profiles!`;
+                    } else {
+                        statusElement.textContent = '🟢 Jasper is ready!';
+                    }
+                    statusIndicator.className = 'status-indicator';
+                } else {
+                    statusElement.textContent = '🔴 API key needed';
+                    statusIndicator.className = 'status-indicator error';
+                }
+            } catch (error) {
+                console.error('Error checking Jasper status:', error);
+                document.getElementById('status-text').textContent = '🔴 Connection error';
+            }
+        }
+
+        async function loadAvailableClients() {
+            const clientLoading = document.getElementById('client-loading');
+            const clientSelector = document.getElementById('clientSelector');
+            
+            try {
+                clientLoading.classList.remove('hidden');
+                
+                const response = await fetch('/clients');
+                const data = await response.json();
+                
+                if (data.success && data.clients) {
+                    availableClients = data.clients;
+                    
+                    // Clear existing options except the first one
+                    clientSelector.innerHTML = '<option value="">Select a client...</option>';
+                    
+                    // Add client options
+                    data.clients.forEach(client => {
+                        const option = document.createElement('option');
+                        option.value = client.id;
+                        option.textContent = `${client.name} - ${client.specialty}`;
+                        clientSelector.appendChild(option);
+                    });
+                    
+                    console.log(`✅ Loaded ${data.clients.length} clients for dropdown`);
+                } else {
+                    console.log('No clients available or error loading clients');
+                }
+            } catch (error) {
+                console.error('Error loading clients:', error);
+            } finally {
+                clientLoading.classList.add('hidden');
+            }
+        }
+
+        async function handleClientSelection() {
+            const clientSelector = document.getElementById('clientSelector');
+            const clientPreview = document.getElementById('client-preview');
+            const selectedValue = clientSelector.value;
+            
+            if (!selectedValue) {
+                // Clear selection
+                selectedClientId = null;
+                clientPreview.classList.add('hidden');
+                clearClientFields();
+                return;
+            }
+            
+            try {
+                // Get detailed client info
+                const response = await fetch(`/clients/${selectedValue}`);
+                const data = await response.json();
+                
+                if (data.success && data.client) {
+                    selectedClientId = selectedValue;
+                    const client = data.client;
+                    
+                    // Update preview
+                    document.getElementById('selected-client-name').textContent = client.name;
+                    document.getElementById('selected-client-specialty').textContent = client.specialty;
+                    document.getElementById('selected-client-location').textContent = client.location;
+                    document.getElementById('selected-client-audience').textContent = client.target_audience || 'General patients';
+                    document.getElementById('selected-client-voice').textContent = client.brand_voice || 'Standard';
+                    
+                    // Auto-populate form fields
+                    document.getElementById('clientName').value = client.name;
+                    document.getElementById('specialty').value = client.specialty;
+                    document.getElementById('location').value = client.location;
+                    
+                    // Show preview
+                    clientPreview.classList.remove('hidden');
+                    
+                    console.log(`✅ Selected client: ${client.name}`);
+                } else {
+                    console.error('Error loading client details:', data.error);
+                }
+            } catch (error) {
+                console.error('Error fetching client details:', error);
+            }
+        }
+
+        function clearClientFields() {
+            document.getElementById('clientName').value = '';
+            document.getElementById('specialty').value = '';
+            document.getElementById('location').value = '';
+        }
+
+        async function generateContent() {
+            const blogTopic = document.getElementById('blogTopic').value.trim();
+            
+            if (!blogTopic) {
+                alert('Jasper needs a blog topic to work with! 🤖');
+                return;
+            }
+            
+            // Update UI for loading state
+            const generateBtn = document.getElementById('generateBtn');
+            const btnText = document.getElementById('btnText');
+            const loader = document.getElementById('loader');
+            
+            generateBtn.disabled = true;
+            btnText.textContent = selectedClientId ? 'Jasper is thinking with client intelligence...' : 'Jasper is thinking...';
+            loader.classList.remove('hidden');
+            
+            // Hide previous output
+            document.getElementById('output-container').classList.add('hidden');
+            
+            try {
+                const requestData = {
+                    blog_topic: blogTopic,
+                    client_id: selectedClientId, // NEW! Pass the selected client ID
+                    client_name: document.getElementById('clientName').value,
+                    specialty: document.getElementById('specialty').value,
+                    location: document.getElementById('location').value
+                };
+                
+                const response = await fetch('/generate-content', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    generatedContent = data.content;
+                    displayContent(data.content, data.message, data.used_client_profile);
+                } else {
+                    alert(`Jasper encountered an issue: ${data.error}`);
+                }
+                
+            } catch (error) {
+                console.error('Error generating content:', error);
+                alert('Jasper seems to be having connection issues. Check the console for details.');
+            } finally {
+                // Reset button state
+                generateBtn.disabled = false;
+                btnText.textContent = 'Let Jasper Work His Magic ✨';
+                loader.classList.add('hidden');
+            }
+        }
+
+        function displayContent(content, message, usedClientProfile = false) {
+            const outputContainer = document.getElementById('output-container');
+            const contentOutput = document.getElementById('content-output');
+            const smartBadge = document.getElementById('smart-badge');
+            
+            // Show smart badge if client profile was used
+            if (usedClientProfile) {
+                smartBadge.classList.remove('hidden');
+            } else {
+                smartBadge.classList.add('hidden');
+            }
+            
+            let html = `
+                <div class="success-message" style="background: ${usedClientProfile ? '#d1ecf1' : '#d4edda'}; color: ${usedClientProfile ? '#0c5460' : '#155724'}; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                    ${message}
+                </div>
+                
+                <!-- Blog Assignment Template -->
+                <div class="blog-assignment-template" style="background: white; border: 2px solid #667eea; border-radius: 10px; overflow: hidden; margin-bottom: 25px;">
+                    <div style="background: #667eea; color: white; padding: 15px; text-align: center;">
+                        <h3 style="margin: 0; font-size: 1.2rem;">📋 BLOG ASSIGNMENT</h3>
+                    </div>
+                    
+                    <div class="assignment-table" style="display: grid; grid-template-columns: 150px 1fr; border-collapse: collapse;">
+                        <div style="background: #4a90e2; color: white; padding: 12px; font-weight: 600; border-bottom: 1px solid #ddd;">Title:</div>
+                        <div style="padding: 12px; border-bottom: 1px solid #ddd;">${content.title}</div>
+                        
+                        <div style="background: #4a90e2; color: white; padding: 12px; font-weight: 600; border-bottom: 1px solid #ddd;">Meta:</div>
+                        <div style="padding: 12px; border-bottom: 1px solid #ddd;">${content.meta}</div>
+                        
+                        <div style="background: #4a90e2; color: white; padding: 12px; font-weight: 600; border-bottom: 1px solid #ddd;">Primary Keywords:</div>
+                        <div style="padding: 12px; border-bottom: 1px solid #ddd;">${content.primaryKeywords}</div>
+                        
+                        <div style="background: #4a90e2; color: white; padding: 12px; font-weight: 600; border-bottom: 1px solid #ddd;">Keywords:</div>
+                        <div style="padding: 12px; border-bottom: 1px solid #ddd;">${content.keywords.join(', ')}</div>
+                        
+                        <div style="background: #4a90e2; color: white; padding: 12px; font-weight: 600; border-bottom: 1px solid #ddd;">CTA:</div>
+                        <div style="padding: 12px; border-bottom: 1px solid #ddd;">${content.cta}</div>
+                        
+                        <div style="background: #4a90e2; color: white; padding: 12px; font-weight: 600;">Resources:</div>
+                        <div style="padding: 12px;">
+                            <ul style="margin: 0; padding-left: 20px;">
+                                ${content.resources.map(resource => `<li>${resource}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Content Structure -->
+                <div class="content-structure" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
+                    <h3 style="margin-bottom: 15px;">📝 Content Structure</h3>
+                    
+                    <div style="margin-bottom: 15px;">
+                        <div style="font-weight: 600; font-size: 1.1rem; color: #333; margin-bottom: 5px;">H1: ${content.h1}</div>
+                    </div>
+                    
+                    ${content.h2Sections.map((section, index) => `
+                        <div style="margin-bottom: 15px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #28a745;">
+                            <div style="font-weight: 600; color: #333; margin-bottom: 8px;">H2: ${section.heading}</div>
+                            <div style="color: #666; font-size: 0.9rem; margin-left: 20px;">
+                                <strong>H3: Content</strong><br>
+                                ${section.h3Content}
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                
+                <!-- Technical Details -->
+                <div class="technical-details" style="background: #fff3cd; padding: 20px; border-radius: 10px; border-left: 4px solid #ffc107; margin-bottom: 20px;">
+                    <h3 style="margin-bottom: 15px;">⚙️ Technical SEO Details</h3>
+                    <div style="margin-bottom: 10px;"><strong>URL Slug:</strong> ${content.url}</div>
+                </div>
+            `;
+            
+            if (content.jasperNotes) {
+                html += `
+                    <div class="jasper-notes" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 20px; border-radius: 10px;">
+                        <h3 style="margin-bottom: 15px;">🤖 Jasper's Strategic Insights</h3>
+                        <p style="margin: 0; line-height: 1.6;">${content.jasperNotes}</p>
+                    </div>
+                `;
+            }
+            
+            contentOutput.innerHTML = html;
+            outputContainer.classList.remove('hidden');
+            
+            // Smooth scroll to output
+            outputContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function downloadContent() {
+            if (!generatedContent) {
+                alert('No content to download yet! Generate some content first.');
+                return;
+            }
+            
+            const clientInfo = selectedClientId ? `\nClient: ${document.getElementById('clientName').value}` : '';
+            
+            const content = `
+JASPER'S BLOG ASSIGNMENT${clientInfo}
+Generated on: ${new Date().toLocaleDateString()}
+
+======================
+BLOG ASSIGNMENT TEMPLATE
+======================
+Title: ${generatedContent.title}
+Meta: ${generatedContent.meta}
+Primary Keywords: ${generatedContent.primaryKeywords}
+Keywords: ${generatedContent.keywords.join(', ')}
+CTA: ${generatedContent.cta}
+Resources: ${generatedContent.resources.join(' | ')}
+
+======================
+CONTENT STRUCTURE
+======================
+H1: ${generatedContent.h1}
+
+${generatedContent.h2Sections.map(section => `
+H2: ${section.heading}
+H3: Content
+${section.h3Content}
+`).join('\n')}
+
+======================
+TECHNICAL DETAILS
+======================
+URL: ${generatedContent.url}
+
+${generatedContent.jasperNotes ? `
+======================
+JASPER'S INSIGHTS
+======================
+${generatedContent.jasperNotes}
+` : ''}
+
+---
+Generated by Jasper 🤖 - Your SEO Assistant
+${selectedClientId ? '🧠 Generated with Client Intelligence' : ''}
+            `;
+            
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `jasper-blog-assignment-${new Date().toISOString().split('T')[0]}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
 </body>
 </html>

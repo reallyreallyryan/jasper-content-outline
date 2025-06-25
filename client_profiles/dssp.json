@@ -1,0 +1,29 @@
+{
+  "client_id": "dssp",
+  "name": "Desert Spine and Sports Physicians",
+  "specialty": "Non-Surgical Pain Relief & Improving Function",
+  "location": "Arizona",
+  "target_audience": "Adults with chronic pain conditions looking for alternative treatments to surgery",
+  "brand_voice": "Informative, caring, guiding",
+  "services": [
+    "PRP Therapy",
+    "BMAC Therapy",
+    "Facet Joint Injections",
+    "Medial Branch Blocks"
+  ],
+  "competitors": [
+    "Arizona Pain",
+    "Test competitor"
+  ],
+  "content_preferences": {
+    "tone": "Welcoming and accessible",
+    "length": "500-1000 words",
+    "include_statistics": true,
+    "include_patient_stories": false
+  },
+  "seo_focus": [
+    "non-surgical pain relief",
+    "prp therapy",
+    "facet joint injections"
+  ]
+}
