@@ -306,6 +306,31 @@ body {
     gap: 5px;
 }
 
+.google-doc-btn {
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.google-doc-btn:hover {
+    background: linear-gradient(135deg, #357ae8, #2d8f47);
+    transform: translateY(-1px);
+}
+
+.google-doc-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
 .download-btn {
     background: #28a745;
     color: white;

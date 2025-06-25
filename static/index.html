@@ -23,7 +23,7 @@
         <!-- Main Content -->
         <main class="main-content">
             <div class="input-section">
-                <!-- NEW CLIENT SELECTOR CARD -->
+                <!-- CLIENT SELECTOR CARD -->
                 <div class="card client-selector-card">
                     <h2>🏥 Select Client</h2>
                     <div class="form-group">
@@ -102,6 +102,9 @@
                             <h2>Jasper's SEO Masterpiece 🎨</h2>
                             <div class="output-actions">
                                 <div id="smart-badge" class="smart-badge hidden">🧠 Client-Smart</div>
+                                <button id="googleDocBtn" class="google-doc-btn" onclick="createGoogleDoc()">
+                                    📄 Create Google Doc
+                                </button>
                                 <button id="downloadBtn" class="download-btn" onclick="downloadContent()">
                                     📥 Download
                                 </button>
@@ -116,7 +119,7 @@
     </div>
 
     <script>
-        // Jasper's Enhanced Frontend Brain - Now Client-Smart! 🧠
+        // Jasper's Enhanced Frontend Brain - Now Client-Smart & Google Drive Enabled! 🧠📄
         let jasperStatus = 'unknown';
         let generatedContent = null;
         let availableClients = [];
@@ -143,6 +146,12 @@
                     } else {
                         statusElement.textContent = '🟢 Jasper is ready!';
                     }
+                    
+                    // Add Google Drive status if enabled
+                    if (data.google_drive_enabled) {
+                        statusElement.textContent += ' 📄';
+                    }
+                    
                     statusIndicator.className = 'status-indicator';
                 } else {
                     statusElement.textContent = '🔴 API key needed';
@@ -264,7 +273,7 @@
             try {
                 const requestData = {
                     blog_topic: blogTopic,
-                    client_id: selectedClientId, // NEW! Pass the selected client ID
+                    client_id: selectedClientId, // Pass the selected client ID
                     client_name: document.getElementById('clientName').value,
                     specialty: document.getElementById('specialty').value,
                     location: document.getElementById('location').value
@@ -295,6 +304,85 @@
                 generateBtn.disabled = false;
                 btnText.textContent = 'Let Jasper Work His Magic ✨';
                 loader.classList.add('hidden');
+            }
+        }
+
+        async function createGoogleDoc() {
+            if (!generatedContent) {
+                alert('Generate content first, then create a Google Doc! 📄');
+                return;
+            }
+            
+            const googleDocBtn = document.getElementById('googleDocBtn');
+            const originalText = googleDocBtn.innerHTML;
+            
+            // Update button state
+            googleDocBtn.disabled = true;
+            googleDocBtn.innerHTML = '📄 Creating Google Doc...';
+            googleDocBtn.style.opacity = '0.6';
+            
+            try {
+                // Get share emails
+                const shareEmails = prompt('Enter email addresses to share with (comma-separated):\\n\\nLeave blank to use default team emails') || '';
+                const emailList = shareEmails.split(',').map(email => email.trim()).filter(email => email);
+                
+                const requestData = {
+                    blog_topic: document.getElementById('blogTopic').value,
+                    client_id: selectedClientId,
+                    client_name: document.getElementById('clientName').value,
+                    specialty: document.getElementById('specialty').value,
+                    location: document.getElementById('location').value,
+                    content: generatedContent,
+                    share_emails: emailList.length > 0 ? emailList : null
+                };
+                
+                const response = await fetch('/create-google-doc', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestData)
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    // Show success with clickable link
+                    const successDiv = document.createElement('div');
+                    successDiv.style.cssText = 'background: #d4edda; color: #155724; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #28a745;';
+                    successDiv.innerHTML = `
+                        <h4 style="margin: 0 0 15px 0; font-size: 18px;">📄 Google Doc Created Successfully!</h4>
+                        <p style="margin: 0 0 15px 0; font-size: 16px;"><strong>${data.doc_title}</strong></p>
+                        <p style="margin: 0 0 15px 0;">Shared with ${data.shared_with ? data.shared_with.length : 0} team members</p>
+                        <a href="${data.doc_url}" target="_blank" 
+                           style="display: inline-block; background: #28a745; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: 600; margin-right: 10px;">
+                           🚀 Open Google Doc
+                        </a>
+                        <button onclick="this.parentElement.remove()" 
+                                style="background: #6c757d; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;">
+                           ✕ Close
+                        </button>
+                    `;
+                    
+                    // Insert after the output header
+                    const outputHeader = document.querySelector('.output-header');
+                    outputHeader.parentNode.insertBefore(successDiv, outputHeader.nextSibling);
+                    
+                    // Also show a notification
+                    alert(`Google Doc created! Click the "Open Google Doc" button to view it.`);
+                    
+                } else {
+                    alert(`Failed to create Google Doc: ${data.error}`);
+                }
+                
+            } catch (error) {
+                console.error('Error creating Google Doc:', error);
+                alert('Error creating Google Doc. Check the console for details.');
+            } finally {
+                // Reset button state
+                googleDocBtn.disabled = false;
+                googleDocBtn.innerHTML = originalText;
+                googleDocBtn.style.opacity = '1';
             }
         }
 

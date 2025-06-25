@@ -152,16 +152,40 @@ class ClientProfileManager:
         
         return "\n".join(context_parts)
 
+# GOOGLE DRIVE INTEGRATION - Import our service
+try:
+    from google_drive_service import JasperGoogleDriveService
+    google_drive_service = JasperGoogleDriveService()
+    GOOGLE_DRIVE_ENABLED = True
+    print("✅ Google Drive integration enabled!")
+except ImportError as e:
+    print(f"⚠️ Google Drive integration not available: {e}")
+    google_drive_service = None
+    GOOGLE_DRIVE_ENABLED = False
+except Exception as e:
+    print(f"⚠️ Google Drive setup issue: {e}")
+    google_drive_service = None
+    GOOGLE_DRIVE_ENABLED = False
+
 # Initialize Client Manager
 client_manager = ClientProfileManager()
 
-# REQUEST MODEL
+# REQUEST MODELS
 class ContentRequest(BaseModel):
     blog_topic: str
     client_id: Optional[str] = None
     client_name: str = ""
     specialty: str = ""
     location: str = ""
+
+class GoogleDocRequest(BaseModel):
+    blog_topic: str
+    client_id: Optional[str] = None
+    client_name: str = ""
+    specialty: str = ""
+    location: str = ""
+    share_emails: Optional[List[str]] = None
+    content: Optional[Dict] = None
 
 class JasperAssistant:
     def __init__(self, client_manager: ClientProfileManager):
@@ -188,7 +212,6 @@ class JasperAssistant:
                         "location": client_data.get("location", client_info["location"])
                     }
 
-        # Build the prompt parts separately to avoid f-string backslash issues
         client_context_section = f"ADDITIONAL CLIENT INTELLIGENCE:\n{client_context}\n" if client_context else ""
         client_alignment_note = "- Align with the client's brand voice and content preferences shown above" if client_context else ""
         
@@ -329,6 +352,138 @@ async def get_client_details(client_id: str, username: str = Depends(verify_team
             "error": f"Error loading client: {str(e)}"
         }
 
+# GOOGLE DRIVE ENDPOINTS! 📄🚀
+@app.post("/create-google-doc")
+async def create_google_doc(request: GoogleDocRequest, username: str = Depends(verify_team_access)):
+    """Create a Google Doc with the blog assignment - THE MAGIC ENDPOINT! ✨"""
+    
+    if not GOOGLE_DRIVE_ENABLED:
+        raise HTTPException(status_code=503, detail="Google Drive integration not available")
+    
+    if not request.blog_topic.strip():
+        raise HTTPException(status_code=400, detail="Jasper needs a blog topic to work with!")
+    
+    try:
+        # Generate content if not provided
+        if not request.content:
+            content_request = ContentRequest(
+                blog_topic=request.blog_topic,
+                client_id=request.client_id,
+                client_name=request.client_name,
+                specialty=request.specialty,
+                location=request.location
+            )
+            
+            generation_result = jasper.generate_content_outline(content_request)
+            
+            if not generation_result["success"]:
+                return {
+                    "success": False,
+                    "error": f"Content generation failed: {generation_result['error']}"
+                }
+            
+            content = generation_result["content"]
+        else:
+            content = request.content
+        
+        # Get client info for the doc
+        client_info = None
+        if request.client_id:
+            client_info = client_manager.get_client_by_id(request.client_id)
+        
+        # Prepare share emails
+        share_emails = request.share_emails or []
+        if not share_emails:
+            # Use default team emails from environment
+            default_emails = os.getenv("CONTENT_TEAM_EMAILS", "").split(",")
+            share_emails = [email.strip() for email in default_emails if email.strip()]
+        
+        # Create the Google Doc! 🚀
+        doc_result = google_drive_service.create_blog_assignment_doc(
+            content=content,
+            blog_topic=request.blog_topic,
+            client_info=client_info,
+            share_emails=share_emails
+        )
+        
+        if doc_result["success"]:
+            return {
+                "success": True,
+                "message": "Google Doc created and shared successfully! 📄✨",
+                "doc_url": doc_result["doc_url"],
+                "doc_title": doc_result["doc_title"],
+                "shared_with": share_emails,
+                "doc_id": doc_result["doc_id"],
+                "used_template": doc_result.get("used_template", False),
+                "replacements_made": doc_result.get("replacements_made", 0)
+            }
+        else:
+            return {
+                "success": False,
+                "error": f"Failed to create Google Doc: {doc_result['error']}"
+            }
+            
+    except Exception as e:
+        return {
+            "success": False,
+            "error": f"Google Doc creation failed: {str(e)}"
+        }
+
+@app.post("/create-template")
+async def create_template(username: str = Depends(verify_team_access)):
+    """Create a perfect template document for Jasper"""
+    
+    if not GOOGLE_DRIVE_ENABLED:
+        raise HTTPException(status_code=503, detail="Google Drive integration not available")
+    
+    try:
+        result = google_drive_service.create_perfect_template()
+        
+        if result["success"]:
+            return {
+                "success": True,
+                "message": "Template created successfully!",
+                "template_doc_id": result["template_doc_id"],
+                "template_url": result["template_url"],
+                "instructions": f"Add this to your .env file: JASPER_TEMPLATE_DOC_ID={result['template_doc_id']}"
+            }
+        else:
+            return {
+                "success": False,
+                "error": result["error"]
+            }
+            
+    except Exception as e:
+        return {
+            "success": False,
+            "error": f"Template creation failed: {str(e)}"
+        }
+
+@app.get("/google-drive-status")
+async def google_drive_status(username: str = Depends(verify_team_access)):
+    """Check Google Drive integration status"""
+    
+    if not GOOGLE_DRIVE_ENABLED:
+        return {
+            "enabled": False,
+            "message": "Google Drive integration not configured",
+            "setup_needed": True
+        }
+    
+    try:
+        test_result = google_drive_service.test_connection()
+        return {
+            "enabled": True,
+            "connection_test": test_result,
+            "message": "Google Drive integration ready!" if test_result["success"] else "Connection issues detected",
+            "template_configured": bool(os.getenv("JASPER_TEMPLATE_DOC_ID"))
+        }
+    except Exception as e:
+        return {
+            "enabled": False,
+            "error": f"Google Drive test failed: {str(e)}"
+        }
+
 @app.get("/", response_class=HTMLResponse)
 async def home(username: str = Depends(verify_team_access)):
     with open("static/index.html", "r") as f:
@@ -353,13 +508,24 @@ async def jasper_status(username: str = Depends(verify_team_access)):
     elif not api_key_set:
         status_message = "Jasper needs an OpenAI API key to get started."
     
+    # Add Google Drive status
+    google_drive_status_msg = ""
+    if GOOGLE_DRIVE_ENABLED:
+        template_configured = bool(os.getenv("JASPER_TEMPLATE_DOC_ID"))
+        if template_configured:
+            google_drive_status_msg = " + Google Drive with templates active! 📄"
+        else:
+            google_drive_status_msg = " + Google Drive active (no template)! 📄"
+    
     return {
         "status": "ready" if api_key_set else "needs_api_key",
-        "message": status_message,
+        "message": status_message + google_drive_status_msg,
         "personality": jasper.personality,
         "expertise": jasper.expertise,
         "client_profiles_loaded": client_count,
-        "intelligence_level": "ENHANCED" if client_count > 0 else "BASIC"
+        "intelligence_level": "ENHANCED" if client_count > 0 else "BASIC",
+        "google_drive_enabled": GOOGLE_DRIVE_ENABLED,
+        "template_configured": bool(os.getenv("JASPER_TEMPLATE_DOC_ID")) if GOOGLE_DRIVE_ENABLED else False
     }
 
 @app.get("/debug")
@@ -379,7 +545,11 @@ async def debug_files():
             "static_files": static_files,
             "client_profiles_folder_exists": profiles_exists,
             "client_profile_files": profile_files,
-            "loaded_clients": len(client_manager.get_all_clients())
+            "loaded_clients": len(client_manager.get_all_clients()),
+            "google_drive_enabled": GOOGLE_DRIVE_ENABLED,
+            "credentials_exists": os.path.exists("credentials.json"),
+            "token_exists": os.path.exists("token.json"),
+            "template_doc_id": os.getenv("JASPER_TEMPLATE_DOC_ID", "Not set")
         }
     except Exception as e:
         return {"error": str(e)}
