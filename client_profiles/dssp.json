@@ -1,29 +1,126 @@
 {
   "client_id": "dssp",
   "name": "Desert Spine and Sports Physicians",
-  "specialty": "Non-Surgical Pain Relief & Improving Function",
+  "brand_name": "desert-spine",
+  "voice_tone": "Confident, compassionate, empowering, professional",
+  "specialty": "Physical Medicine and Rehabilitation",
   "location": "Arizona",
-  "target_audience": "Adults with chronic pain conditions looking for alternative treatments to surgery",
-  "brand_voice": "Informative, caring, guiding",
+  "target_audience": {
+    "primary": [
+      "Adults (ages 35–75) with pain, injuries, or mobility issues",
+      "People seeking non-surgical treatment options",
+      "Active or health-conscious individuals"
+    ],
+    "secondary": [
+      "Healthcare professionals or referring providers",
+      "Medical students and PM&R fellows"
+    ]
+  },
+  "brand_keywords": [
+    "non-surgical spine care",
+    "regenerative medicine",
+    "prp therapy",
+    "bmac therapy",
+    "prolotherapy",
+    "intracept",
+    "kyphoplasty",
+    "physical medicine and rehabilitation",
+    "function restoration",
+    "whole-person healing",
+    "minimally invasive treatments",
+    "fellowship-trained physicians",
+    "Arizona musculoskeletal care",
+    "empowering patients",
+    "compassionate care"
+  ],
+  "brand_mission": "Empower patients to live healthy, active lives through innovative, non-surgical care that restores function. We focus on treating the whole person using personalized, non-surgical treatments designed to relieve pain and restore movement. Our team of board-certified, fellowship-trained specialists are dedicated to helping patients avoid chronic pain and return to fully functional, more active lives.",
+  "slogan": "Function Restored, Life Renewed",
+  "tagline": "Empowering Healing Without Surgery",
+  "messaging_rules": {
+    "do": [
+      "Speak to function and quality of life, not just pain",
+      "Use terms like relief, restore, rebuild, recover, active lifestyle, non-surgical healing",
+      "Highlight minimally invasive or regenerative treatments such as PRP and BMAC",
+      "Refer to DSSP as a trusted provider, patient-first practice, or innovator in non-surgical spine care"
+    ],
+    "donot": [
+      "Do not use the word 'sciatica' — say 'lumbar radiculopathy' instead",
+      "Do not describe pain as 'minor' or 'mild' — use 'non-severe' or 'not functionally limiting'",
+      "Do not reference surgery — DSSP only provides non-surgical care",
+      "Do not refer to DSSP as a 'pain management center' — use 'pain treatment center'",
+      "Do not use 'needles' or 'body parts' in text or image prompts",
+      "Do not focus on 'reducing swelling' — this is not part of their messaging"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "Exclusive focus on non-surgical treatments for spine and musculoskeletal conditions",
+      "Offers cutting-edge procedures including PRP therapy, BMAC therapy, prolotherapy, and Intracept",
+      "Uses fluoroscopic and ultrasound-guided techniques for precision and safety",
+      "All physicians are board-certified and fellowship-trained in Physical Medicine & Rehabilitation (PM&R)",
+      "Provides advanced, minimally invasive options like kyphoplasty (but not vertebroplasty)",
+      "Specialized in both common and complex pain conditions including lumbar radiculopathy, osteoarthritis, and disc degeneration"
+    ],
+    "philosophical_strengths": [
+      "Delivers whole-person care that treats the individual, not just the symptom",
+      "Prioritizes restoring function and improving quality of life, not just relieving pain",
+      "Personalizes every treatment plan to meet the patient's unique needs and lifestyle",
+      "Focuses on preventing chronic or recurring pain through regenerative medicine and education",
+      "Demonstrates warmth, compassion, and a true partnership in care"
+    ],
+    "organizational_strengths": [
+      "Operates under a 'privademics' model — combining academic-level rigor with the efficiency of private practice",
+      "Recognized as a Top Docs provider, enhancing brand trust and authority",
+      "Offers a NASS-recognized fellowship program to train the next generation of physiatrists",
+      "Maintains a transparent, ethical, and supportive team culture",
+      "Supports partner physicians with infrastructure, administrative resources, and growth opportunities while maintaining clinical autonomy"
+    ]
+  },
+  "topic_targeting": "Tailor to selected topic (e.g., PRP = healing tissue, not just inflammation)",
+  "procedure_language": [
+    "Use precise terms like 'fluoroscopically guided PRP' instead of 'PRP shot'",
+    "Mention restoring function, reducing pain, and returning to activity"
+  ],
   "services": [
     "PRP Therapy",
-    "BMAC Therapy",
+    "BMAC Therapy", 
+    "Prolotherapy",
+    "Intracept",
+    "Kyphoplasty",
     "Facet Joint Injections",
-    "Medial Branch Blocks"
+    "Medial Branch Blocks",
+    "Physical Medicine and Rehabilitation",
+    "Regenerative Medicine",
+    "Minimally Invasive Pain Treatment"
   ],
+  "location_references": {
+    "Gilbert": "3487 South Mercy Road, Gilbert, AZ 85297",
+    "Mesa": "6634 E. Baseline Rd #101, Mesa, AZ 85206",
+    "Peoria": "13128 N 94th Drive, Suite 200, Peoria, AZ 85381",
+    "Phoenix": "3700 N 24th St., Suite 210, Phoenix, AZ 85016",
+    "Scottsdale": "8670 E. Shea Blvd., Suite 102, Scottsdale, AZ 85260"
+  },
   "competitors": [
     "Arizona Pain",
-    "Test competitor"
+    "Phoenix Neurological Associates",
+    "Southwest Spine and Pain Center"
   ],
   "content_preferences": {
-    "tone": "Welcoming and accessible",
-    "length": "500-1000 words",
+    "tone": "Confident, compassionate, empowering",
+    "length": "1000-1500 words",
     "include_statistics": true,
-    "include_patient_stories": false
+    "include_patient_stories": false,
+    "focus_on_function": true,
+    "avoid_surgery_references": true
   },
   "seo_focus": [
-    "non-surgical pain relief",
-    "prp therapy",
-    "facet joint injections"
+    "non-surgical spine care arizona",
+    "prp therapy phoenix",
+    "bmac therapy scottsdale", 
+    "physical medicine rehabilitation",
+    "regenerative medicine arizona",
+    "function restoration",
+    "minimally invasive pain treatment",
+    "fellowship trained physiatrists"
   ]
 }

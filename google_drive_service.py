@@ -15,7 +15,7 @@ from googleapiclient.errors import HttpError
 class JasperGoogleDriveService:
     """
     Jasper's Google Drive integration - creates perfectly formatted Google Docs automatically!
-    Now works on both local development AND Render deployment! 🚀
+    Now with HTML copy/paste approach for PERFECT tables! 🚀
     """
     
     # Google Drive API scopes
@@ -55,7 +55,6 @@ class JasperGoogleDriveService:
             if os.path.exists(self.token_file):
                 self.creds = Credentials.from_authorized_user_file(self.token_file, self.SCOPES)
             
-            
             # If no valid credentials, get new ones
             if not self.creds or not self.creds.valid:
                 if self.creds and self.creds.expired and self.creds.refresh_token:
@@ -94,191 +93,173 @@ class JasperGoogleDriveService:
                                  client_info: Dict = None,
                                  folder_id: str = None,
                                  share_emails: List[str] = None,
-                                 use_template: bool = True) -> Dict:
+                                 use_html_approach: bool = True) -> Dict:
         """
-        Create a perfectly formatted Google Doc with the blog assignment
-        Now with template support AND bulletproof fallback! 🪄
+        Create perfectly formatted Google Doc with HTML copy/paste approach! 🎯
         """
         
-        # Try template method first if enabled
-        if use_template:
-            template_result = self.create_new_templated_doc(
+        if use_html_approach:
+            return self.create_html_copy_paste_doc(
                 content=content,
                 blog_topic=blog_topic,
                 client_info=client_info,
                 share_emails=share_emails
             )
-            
-            # If template method worked, return it
-            if template_result.get("success"):
-                return template_result
-            else:
-                print(f"⚠️ Template method failed: {template_result.get('error')}")
-                print("🔄 Falling back to complete document creation...")
-        
-        # Fallback to complete document creation
-        return self.create_simple_blog_assignment_doc(
-            content=content,
-            blog_topic=blog_topic,
-            client_info=client_info,
-            folder_id=folder_id,
-            share_emails=share_emails
-        )
+        else:
+            # Fallback to old method
+            return self.create_simple_blog_assignment_doc(
+                content=content,
+                blog_topic=blog_topic,
+                client_info=client_info,
+                folder_id=folder_id,
+                share_emails=share_emails
+            )
     
-    def create_new_templated_doc(self, 
-                               content: Dict, 
-                               blog_topic: str,
-                               client_info: Dict = None,
-                               share_emails: List[str] = None) -> Dict:
+    def create_html_copy_paste_doc(self, 
+                                 content: Dict, 
+                                 blog_topic: str,
+                                 client_info: Dict = None,
+                                 share_emails: List[str] = None) -> Dict:
         """
-        NEW SIMPLIFIED TEMPLATE METHOD - No copying, just read and create fresh!
+        Create document with HTML content that becomes perfect tables when pasted! 📋✨
         """
         
         try:
-            template_doc_id = os.getenv("JASPER_TEMPLATE_DOC_ID")
-            
-            if not template_doc_id:
-                return {
-                    "success": False,
-                    "error": "No template document ID provided. Set JASPER_TEMPLATE_DOC_ID in environment."
-                }
-            
-            print(f"📄 Using template document ID: {template_doc_id}")
-            
-            # Get the template content first
-            template_doc = self.docs_service.documents().get(documentId=template_doc_id).execute()
-            template_content = self.extract_text_from_doc(template_doc)
-            
-            print(f"📄 Retrieved template content ({len(template_content)} characters)")
-            
-            # Prepare all the replacement values
-            replacements = {
-                '<title-tag>': content.get('title', 'N/A'),
-                '<meta-description>': content.get('meta', 'N/A'),
-                '<primary-keywords>': content.get('primaryKeywords', 'N/A'),
-                '<keywords>': ', '.join(content.get('keywords', [])),
-                '<cta>': content.get('cta', 'N/A'),
-                '<resources>': '\n'.join([f"• {resource}" for resource in content.get('resources', [])])
-            }
-            
-            # Add client-specific placeholders if available
-            if client_info:
-                replacements.update({
-                    '<client-name>': client_info.get('name', ''),
-                    '<client-specialty>': client_info.get('specialty', ''),
-                    '<client-location>': client_info.get('location', ''),
-                    '<client-brand-voice>': client_info.get('brand_voice', ''),
-                    '<target-audience>': client_info.get('target_audience', '')
-                })
-            
-            # Replace placeholders in the template content
-            final_content = template_content
-            replacements_made = 0
-            
-            for placeholder, replacement in replacements.items():
-                if placeholder in final_content:
-                    final_content = final_content.replace(placeholder, replacement)
-                    replacements_made += 1
-                    print(f"  ✅ Replaced '{placeholder}' with '{replacement[:30]}{'...' if len(replacement) > 30 else ''}'")
-            
-            print(f"🔄 Made {replacements_made} replacements in template content")
-            
             # Generate document title
             client_name = client_info.get('name', 'Healthcare Practice') if client_info else 'Healthcare Practice'
-            timestamp = datetime.now().strftime('%m/%d/%Y')
-            doc_title = f"Blog Assignment - {blog_topic} - {client_name} - {timestamp}"
+            timestamp = datetime.now().strftime('%B %Y')
+            doc_title = f"{client_name} - Blog - {blog_topic} - {timestamp}"
             
-            # Create new document with the processed content
+            # Create the document
             doc_body = {'title': doc_title}
             doc = self.docs_service.documents().create(body=doc_body).execute()
-            new_doc_id = doc.get('documentId')
+            doc_id = doc.get('documentId')
             
-            print(f"✅ Created new doc: {doc_title}")
+            print(f"✅ Created HTML copy/paste doc: {doc_title}")
             
-            # Insert the processed content
+            # Generate the HTML content that will become a perfect table
+            html_content = self.generate_perfect_html_content(content, blog_topic)
+            
+            # Create instructions for the user
+            instructions = f"""🎯 COPY THE HTML BELOW AND PASTE INTO GOOGLE DOCS FOR PERFECT TABLES!
+
+INSTRUCTIONS:
+1. Select and copy the HTML content below (starting from <h2>BLOG ASSIGNMENT</h2>)
+2. Open this Google Doc: {f"https://docs.google.com/document/d/{doc_id}/edit"}
+3. Paste the HTML content (Ctrl+V or Cmd+V)
+4. Google Docs will automatically convert it to perfect tables and formatting!
+
+═══════════════════════════════════════════════════════════════
+
+{html_content}
+
+═══════════════════════════════════════════════════════════════
+
+📋 The HTML above will create EXACTLY the table format you want when pasted into Google Docs!
+"""
+            
+            # Insert the instructions into the Google Doc
             requests = [{
                 'insertText': {
                     'location': {'index': 1},
-                    'text': final_content
+                    'text': instructions
                 }
             }]
             
             self.docs_service.documents().batchUpdate(
-                documentId=new_doc_id,
+                documentId=doc_id,
                 body={'requests': requests}
             ).execute()
             
-            print("✅ Content inserted successfully!")
+            print("✅ Added HTML copy/paste instructions!")
             
-            # Share with team members
+            # Share with team
             if share_emails:
-                self.share_document(new_doc_id, share_emails)
+                self.share_document(doc_id, share_emails)
             
-            # Get shareable link
-            doc_url = f"https://docs.google.com/document/d/{new_doc_id}/edit"
+            doc_url = f"https://docs.google.com/document/d/{doc_id}/edit"
             
             return {
                 "success": True,
-                "doc_id": new_doc_id,
-                "doc_url": doc_url,  
+                "doc_id": doc_id,
+                "doc_url": doc_url,
                 "doc_title": doc_title,
-                "message": f"Created templated blog assignment '{doc_title}' successfully! 📄✨",
-                "used_template": True,
-                "replacements_made": replacements_made
+                "message": f"Created HTML copy/paste document! Copy the HTML from the doc and paste it for perfect tables! 📋✨",
+                "html_content": html_content,
+                "used_html_approach": True
             }
             
         except Exception as e:
-            print(f"❌ New template creation error: {e}")
+            print(f"❌ HTML copy/paste error: {e}")
             import traceback
             traceback.print_exc()
             return {
                 "success": False,
-                "error": f"Failed to create new templated document: {e}"
+                "error": f"Failed to create HTML copy/paste document: {e}"
             }
     
-    def extract_text_from_doc(self, doc) -> str:
-        """Extract plain text content from a Google Doc, including tables"""
+    def generate_perfect_html_content(self, content: Dict, blog_topic: str) -> str:
+        """
+        Generate HTML that creates EXACTLY your table format when pasted into Google Docs! 🎯
+        """
         
-        content = doc.get('body', {}).get('content', [])
-        text_parts = []
+        # Create HTML that will become a perfect Google Docs table
+        html = f'''<h2>BLOG ASSIGNMENT</h2>
+
+<table border="1" style="border-collapse: collapse; width: 100%; margin-bottom: 20px;">
+    <tr style="background-color: #f0f0f0;">
+        <td style="padding: 12px; font-weight: bold; width: 200px; border: 1px solid #ccc;"><strong>Title:</strong></td>
+        <td style="padding: 12px; border: 1px solid #ccc;">{content.get('title', 'N/A')}</td>
+    </tr>
+    <tr>
+        <td style="padding: 12px; font-weight: bold; border: 1px solid #ccc;"><strong>Meta:</strong></td>
+        <td style="padding: 12px; border: 1px solid #ccc;">{content.get('meta', 'N/A')}</td>
+    </tr>
+    <tr style="background-color: #f0f0f0;">
+        <td style="padding: 12px; font-weight: bold; border: 1px solid #ccc;"><strong>Primary Keywords:</strong></td>
+        <td style="padding: 12px; border: 1px solid #ccc;">{content.get('primaryKeywords', 'N/A')}</td>
+    </tr>
+    <tr>
+        <td style="padding: 12px; font-weight: bold; border: 1px solid #ccc;"><strong>Keywords:</strong></td>
+        <td style="padding: 12px; border: 1px solid #ccc;">{', '.join(content.get('keywords', []))}</td>
+    </tr>
+    <tr style="background-color: #f0f0f0;">
+        <td style="padding: 12px; font-weight: bold; border: 1px solid #ccc;"><strong>CTA:</strong></td>
+        <td style="padding: 12px; border: 1px solid #ccc;">{content.get('cta', 'N/A')}</td>
+    </tr>
+    <tr>
+        <td style="padding: 12px; font-weight: bold; border: 1px solid #ccc;"><strong>Resources:</strong></td>
+        <td style="padding: 12px; border: 1px solid #ccc;">{'<br>'.join([f"• {resource}" for resource in content.get('resources', [])])}</td>
+    </tr>
+</table>
+
+<h1>{content.get('h1', 'Main Heading')}</h1>
+
+'''
         
-        for element in content:
-            # Handle regular paragraphs
-            if 'paragraph' in element:
-                paragraph = element['paragraph']
-                if 'elements' in paragraph:
-                    for para_element in paragraph['elements']:
-                        if 'textRun' in para_element:
-                            text_run = para_element['textRun']
-                            text_content = text_run.get('content', '')
-                            text_parts.append(text_content)
+        # Add H2 sections
+        for section in content.get('h2Sections', []):
+            html += f'''<h2>{section.get('heading', 'Section Heading')}</h2>
+
+'''
             
-            # Handle tables - THIS IS THE KEY! 🔑
-            elif 'table' in element:
-                table = element['table']
-                if 'tableRows' in table:
-                    for row in table['tableRows']:
-                        if 'tableCells' in row:
-                            for cell in row['tableCells']:
-                                if 'content' in cell:
-                                    # Recursively extract text from cell content
-                                    for cell_element in cell['content']:
-                                        if 'paragraph' in cell_element:
-                                            paragraph = cell_element['paragraph']
-                                            if 'elements' in paragraph:
-                                                for para_element in paragraph['elements']:
-                                                    if 'textRun' in para_element:
-                                                        text_run = para_element['textRun']
-                                                        text_content = text_run.get('content', '')
-                                                        text_parts.append(text_content)
-                                # Add some spacing between cells
-                                text_parts.append('\t')
-                        # Add line break between rows
-                        text_parts.append('\n')
+            # Add bullet points
+            bullets = section.get('h3Content', '').split('\n')
+            for bullet in bullets:
+                if bullet.strip():
+                    clean_bullet = bullet.strip().replace('- ', '').replace('• ', '')
+                    html += f'''<p>• {clean_bullet}</p>
+'''
+            
+            html += '''
+'''
         
-        extracted_text = ''.join(text_parts)
-        print(f"📄 Extracted text preview: {extracted_text[:200]}...")
-        return extracted_text
+        # Add Jasper notes if available
+        if content.get('jasperNotes'):
+            html += f'''<hr>
+<p><strong>🤖 Jasper's Strategic Insights:</strong> {content.get('jasperNotes')}</p>'''
+        
+        return html
     
     def create_simple_blog_assignment_doc(self, 
                                          content: Dict, 
@@ -287,7 +268,7 @@ class JasperGoogleDriveService:
                                          folder_id: str = None,
                                          share_emails: List[str] = None) -> Dict:
         """
-        Create complete blog assignment doc (fallback method with FULL content)
+        FALLBACK METHOD - Create complete blog assignment doc
         """
         
         try:
@@ -301,9 +282,9 @@ class JasperGoogleDriveService:
             doc = self.docs_service.documents().create(body=doc_body).execute()
             doc_id = doc.get('documentId')
             
-            print(f"✅ Created complete Google Doc: {doc_title}")
+            print(f"✅ Created fallback Google Doc: {doc_title}")
             
-            # Add COMPLETE content
+            # Add content using existing method
             self.add_complete_content_to_doc(doc_id, content, blog_topic, client_info)
             
             # Share with team members
@@ -317,84 +298,54 @@ class JasperGoogleDriveService:
                 "doc_id": doc_id,
                 "doc_url": doc_url,
                 "doc_title": doc_title,
-                "message": f"Created complete blog assignment '{doc_title}' successfully!",
-                "used_template": False
+                "message": f"Created fallback blog assignment '{doc_title}' successfully!",
+                "used_fallback": True
             }
             
         except Exception as e:
             return {
                 "success": False,
-                "error": f"Failed to create complete document: {e}"
+                "error": f"Failed to create fallback document: {e}"
             }
     
     def add_complete_content_to_doc(self, doc_id: str, content: Dict, blog_topic: str, client_info: Dict = None):
-        """Add COMPLETE content to document - including ALL H1/H2/H3 structure!"""
+        """Add content to document - fallback formatting"""
         
-        # Build complete content
+        # Build professional content
         content_parts = []
-        content_parts.append("🤖 JASPER'S BLOG ASSIGNMENT")
-        content_parts.append("=" * 50)
-        content_parts.append(f"Generated on: {datetime.now().strftime('%B %d, %Y at %I:%M %p')}")
+        content_parts.append("BLOG ASSIGNMENT")
         content_parts.append("")
-        
-        # Blog Topic
-        content_parts.append("🎯 BLOG TOPIC")
-        content_parts.append("-" * 20)
-        content_parts.append(f"{blog_topic}")
-        content_parts.append("")
-        
-        # Client Information
-        if client_info:
-            content_parts.append("🏥 CLIENT INFORMATION")
-            content_parts.append("-" * 30)
-            content_parts.append(f"Practice: {client_info.get('name', 'N/A')}")
-            content_parts.append(f"Specialty: {client_info.get('specialty', 'N/A')}")
-            content_parts.append(f"Location: {client_info.get('location', 'N/A')}")
-            content_parts.append(f"Brand Voice: {client_info.get('brand_voice', 'Standard')}")
-            content_parts.append(f"Target Audience: {client_info.get('target_audience', 'General patients')}")
-            content_parts.append("")
-        
-        # SEO Assignment
-        content_parts.append("📋 SEO ASSIGNMENT")
-        content_parts.append("-" * 25)
-        content_parts.append(f"Title: {content.get('title', 'N/A')}")
-        content_parts.append(f"Meta Description: {content.get('meta', 'N/A')}")
+        content_parts.append("-" * 150)
+        content_parts.append(f"Title:          {content.get('title', 'N/A')}")
+        content_parts.append(f"Meta:           {content.get('meta', 'N/A')}")
         content_parts.append(f"Primary Keywords: {content.get('primaryKeywords', 'N/A')}")
-        content_parts.append(f"Keywords: {', '.join(content.get('keywords', []))}")
-        content_parts.append(f"Call-to-Action: {content.get('cta', 'N/A')}")
-        content_parts.append(f"URL Slug: {content.get('url', 'N/A')}")
+        content_parts.append(f"Keywords:       {', '.join(content.get('keywords', []))}")
+        content_parts.append(f"CTA:            {content.get('cta', 'N/A')}")
+        content_parts.append(f"Resources:      {' | '.join(content.get('resources', []))}")
+        content_parts.append("-" * 150)
+        content_parts.append("")
         content_parts.append("")
         
-        # Resources
-        content_parts.append("Resources:")
-        for resource in content.get('resources', []):
-            content_parts.append(f"• {resource}")
+        # H1 Header
+        content_parts.append(f"# {content.get('h1', 'Main Heading')}")
         content_parts.append("")
         
-        # CONTENT STRUCTURE - THE IMPORTANT PART! 🎯
-        content_parts.append("📝 CONTENT STRUCTURE")
-        content_parts.append("-" * 30)
-        content_parts.append(f"H1: {content.get('h1', 'N/A')}")
-        content_parts.append("")
-        
-        # H2 Sections with full guidance
-        for i, section in enumerate(content.get('h2Sections', []), 1):
-            content_parts.append(f"H2: {section.get('heading', '')}")
-            content_parts.append("Content Guidelines:")
-            content_parts.append(f"{section.get('h3Content', '')}")
+        # H2 Sections
+        for section in content.get('h2Sections', []):
+            content_parts.append(f"## {section.get('heading', 'Section Heading')}")
+            content_parts.append("")
+            
+            bullets = section.get('h3Content', '').split('\n')
+            for bullet in bullets:
+                if bullet.strip():
+                    clean_bullet = bullet.strip().replace('- ', '').replace('• ', '')
+                    content_parts.append(f"• {clean_bullet}")
+            
             content_parts.append("")
         
-        # Jasper's Strategic Insights
         if content.get('jasperNotes'):
-            content_parts.append("🤖 JASPER'S STRATEGIC INSIGHTS")
-            content_parts.append("-" * 40)
-            content_parts.append(f"{content.get('jasperNotes')}")
-            content_parts.append("")
-        
-        # Footer
-        content_parts.append("-" * 50)
-        content_parts.append("Generated by Jasper 🤖 - Your AI SEO Assistant")
-        content_parts.append("Ready to create amazing content!")
+            content_parts.append("---")
+            content_parts.append(f"🤖 Jasper's Strategic Insights: {content.get('jasperNotes')}")
         
         full_content = "\n".join(content_parts)
         
@@ -411,9 +362,9 @@ class JasperGoogleDriveService:
                 documentId=doc_id,
                 body={'requests': requests}
             ).execute()
-            print("✅ COMPLETE content added successfully!")
+            print("✅ Content added successfully!")
         except Exception as e:
-            print(f"❌ Error adding complete content: {e}")
+            print(f"❌ Error adding content: {e}")
     
     def share_document(self, doc_id: str, email_addresses: List[str], role: str = 'writer'):
         """Share the document with specified email addresses"""
@@ -421,7 +372,7 @@ class JasperGoogleDriveService:
             for email in email_addresses:
                 permission = {
                     'type': 'user',
-                    'role': role,  # 'reader', 'writer', or 'owner'
+                    'role': role,
                     'emailAddress': email.strip()
                 }
                 
@@ -437,12 +388,9 @@ class JasperGoogleDriveService:
             print(f"❌ Error sharing document: {e}")
     
     def create_perfect_template(self) -> Dict:
-        """
-        Create a perfect template document that definitely works with Jasper
-        """
+        """Create a perfect template document"""
         
         try:
-            # Template content exactly as you specified
             template_content = """**Title:** <title-tag>
 **Meta:** <meta-description>
 **Primary Keywords:** <primary-keywords>
@@ -450,13 +398,6 @@ class JasperGoogleDriveService:
 **CTA:** <cta>
 **Resources:**
 <resources>
-
-**Client Information:**
-Practice: <client-name>
-Specialty: <client-specialty>
-Location: <client-location>
-Brand Voice: <client-brand-voice>
-Target Audience: <target-audience>
 
 **Content Structure:**
 [Content writers fill this section based on generated outline]
@@ -469,23 +410,14 @@ H2:
 
 H2: 
 
-H2: 
-
 **Notes:**
 Generated by Jasper 🤖 - Your AI SEO Assistant
 """
             
-            # Create new document
-            doc_body = {
-                'title': 'Jasper Blog Assignment Template - MASTER'
-            }
-            
+            doc_body = {'title': 'Jasper Blog Assignment Template - MASTER'}
             doc = self.docs_service.documents().create(body=doc_body).execute()
             doc_id = doc.get('documentId')
             
-            print(f"✅ Created template document: {doc_id}")
-            
-            # Add template content
             requests = [{
                 'insertText': {
                     'location': {'index': 1},
@@ -498,8 +430,6 @@ Generated by Jasper 🤖 - Your AI SEO Assistant
                 body={'requests': requests}
             ).execute()
             
-            print("✅ Template content added successfully!")
-            
             doc_url = f"https://docs.google.com/document/d/{doc_id}/edit"
             
             return {
@@ -510,7 +440,6 @@ Generated by Jasper 🤖 - Your AI SEO Assistant
             }
             
         except Exception as e:
-            print(f"❌ Error creating template: {e}")
             return {
                 "success": False,
                 "error": f"Failed to create template: {e}"
@@ -525,14 +454,12 @@ Generated by Jasper 🤖 - Your AI SEO Assistant
             }
         
         try:
-            # Test by listing files
             results = self.drive_service.files().list(pageSize=1).execute()
             
             return {
                 "success": True,
                 "message": "Google Drive connection successful!",
-                "can_create_docs": bool(self.docs_service),
-                "user_email": self.creds.token if hasattr(self.creds, 'token') else "Unknown"
+                "can_create_docs": bool(self.docs_service)
             }
             
         except Exception as e:
@@ -554,12 +481,6 @@ if __name__ == "__main__":
     
     if test_result["success"]:
         print("\n✅ Google Drive integration is ready!")
-        print("📋 To use with Jasper:")
-        print("1. Add CONTENT_TEAM_EMAILS to your .env file")
-        print("2. Call create_blog_assignment_doc() with your content")
-        print("3. Beautiful Google Doc created and shared automatically!")
+        print("📋 HTML Copy/Paste approach enabled for perfect tables!")
     else:
-        print("\n❌ Setup needed:")
-        print("1. Download credentials.json from Google Cloud Console")
-        print("2. Enable Google Drive and Docs APIs")
-        print("3. Run this script to authenticate")
+        print("\n❌ Setup needed")

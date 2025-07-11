@@ -434,20 +434,26 @@
                     </div>
                 </div>
                 
-                <!-- Content Structure -->
+                <!-- Content Structure - ENHANCED VERSION -->
                 <div class="content-structure" style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 25px;">
-                    <h3 style="margin-bottom: 15px;">📝 Content Structure</h3>
+                    <h3 style="margin-bottom: 15px;">📝 Content Structure & Detailed Guidance</h3>
                     
                     <div style="margin-bottom: 15px;">
                         <div style="font-weight: 600; font-size: 1.1rem; color: #333; margin-bottom: 5px;">H1: ${content.h1}</div>
                     </div>
                     
                     ${content.h2Sections.map((section, index) => `
-                        <div style="margin-bottom: 15px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #28a745;">
-                            <div style="font-weight: 600; color: #333; margin-bottom: 8px;">H2: ${section.heading}</div>
-                            <div style="color: #666; font-size: 0.9rem; margin-left: 20px;">
-                                <strong>H3: Content</strong><br>
-                                ${section.h3Content}
+                        <div style="margin-bottom: 20px; padding: 20px; background: white; border-radius: 8px; border-left: 4px solid #28a745;">
+                            <div style="font-weight: 600; color: #333; margin-bottom: 15px; font-size: 1.1rem;">H2: ${section.heading}</div>
+                            <div style="color: #555; font-size: 0.95rem; line-height: 1.8; margin-left: 15px;">
+                                ${section.h3Content.split('\n').filter(line => line.trim()).map(bullet => {
+                                    // Clean up the bullet point - remove leading dashes if they exist
+                                    const cleanBullet = bullet.trim().replace(/^-\s*/, '');
+                                    return `<div style="margin-bottom: 8px; display: flex; align-items: flex-start;">
+                                        <span style="color: #28a745; font-weight: bold; margin-right: 8px; margin-top: 2px;">•</span>
+                                        <span>${cleanBullet}</span>
+                                    </div>`;
+                                }).join('')}
                             </div>
                         </div>
                     `).join('')}
@@ -505,8 +511,11 @@ H1: ${generatedContent.h1}
 
 ${generatedContent.h2Sections.map(section => `
 H2: ${section.heading}
-H3: Content
-${section.h3Content}
+
+${section.h3Content.split('\n').filter(line => line.trim()).map(bullet => {
+    const cleanBullet = bullet.trim().replace(/^-\s*/, '');
+    return `• ${cleanBullet}`;
+}).join('\n')}
 `).join('\n')}
 
 ======================

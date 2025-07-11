@@ -78,52 +78,134 @@ class ClientProfileManager:
     
     def get_client_context_for_ai(self, client_id: str) -> str:
         """
-        Generate rich context about a client for AI content generation
-        This is where Jasper gets SMART about each client! 🤖
+        Generate ENHANCED context about a client for AI content generation
+        Now prioritizes messaging rules, brand differentiators, and topic targeting! 🧠🎯
         """
         client = self.get_client_by_id(client_id)
         
         if not client:
-            return "No specific client context available."
+            return ""
         
-        # Build comprehensive context for the AI
+        # Build comprehensive context for the AI - PRIORITIZING THE POWER FIELDS! 
         context_parts = [
             f"CLIENT: {client.get('name', 'Unknown Practice')}",
             f"SPECIALTY: {client.get('specialty', 'General Healthcare')}",
             f"LOCATION: {client.get('location', 'Local Area')}",
-            f"TARGET AUDIENCE: {client.get('target_audience', 'General patients')}"
+            f"BRAND VOICE: {client.get('voice_tone', 'Professional')}"
         ]
         
-        # Add brand voice guidance
-        brand_voice = client.get('brand_voice', '')
-        if brand_voice:
-            context_parts.append(f"BRAND VOICE: {brand_voice}")
+        # PRIORITY 1: TARGET AUDIENCE - Who are we writing for?
+        target_audience = client.get('target_audience', {})
+        if target_audience:
+            primary_audience = target_audience.get('primary', [])
+            if primary_audience:
+                context_parts.append(f"PRIMARY AUDIENCE: {', '.join(primary_audience)}")
+            
+            secondary_audience = target_audience.get('secondary', [])
+            if secondary_audience:
+                context_parts.append(f"SECONDARY AUDIENCE: {', '.join(secondary_audience)}")
+        else:
+            # Fallback to old format
+            old_audience = client.get('target_audience')
+            if old_audience and isinstance(old_audience, str):
+                context_parts.append(f"TARGET AUDIENCE: {old_audience}")
         
-        # Add services they offer
+        # PRIORITY 2: MESSAGING RULES - Critical do's and don'ts
+        messaging_rules = client.get('messaging_rules', {})
+        if messaging_rules:
+            dos = messaging_rules.get('do', [])
+            if dos:
+                context_parts.append("MESSAGING DO's:")
+                for rule in dos:
+                    context_parts.append(f"✅ {rule}")
+            
+            donts = messaging_rules.get('donot', [])
+            if donts:
+                context_parts.append("MESSAGING DON'Ts:")
+                for rule in donts:
+                    context_parts.append(f"❌ {rule}")
+        
+        # PRIORITY 3: BRAND DIFFERENTIATORS - What makes them special
+        brand_diff = client.get('brand_differentiators', {})
+        if brand_diff:
+            clinical = brand_diff.get('clinical_strengths', [])
+            if clinical:
+                context_parts.append("CLINICAL DIFFERENTIATORS:")
+                for strength in clinical[:3]:  # Top 3 to avoid overwhelming
+                    context_parts.append(f"🏥 {strength}")
+            
+            philosophical = brand_diff.get('philosophical_strengths', [])
+            if philosophical:
+                context_parts.append("PHILOSOPHICAL APPROACH:")
+                for strength in philosophical[:2]:  # Top 2
+                    context_parts.append(f"💭 {strength}")
+        
+        # PRIORITY 4: TOPIC TARGETING & PROCEDURE LANGUAGE
+        topic_targeting = client.get('topic_targeting')
+        if topic_targeting:
+            context_parts.append(f"TOPIC TARGETING: {topic_targeting}")
+        
+        procedure_language = client.get('procedure_language', [])
+        if procedure_language:
+            context_parts.append("PROCEDURE LANGUAGE REQUIREMENTS:")
+            for requirement in procedure_language:
+                context_parts.append(f"📋 {requirement}")
+        
+        # BRAND MISSION & POSITIONING
+        brand_mission = client.get('brand_mission')
+        if brand_mission:
+            context_parts.append(f"BRAND MISSION: {brand_mission}")
+        
+        slogan = client.get('slogan')
+        tagline = client.get('tagline')
+        if slogan or tagline:
+            context_parts.append(f"BRAND POSITIONING: {slogan or ''} | {tagline or ''}")
+        
+        # SERVICES (Enhanced)
         services = client.get('services', [])
         if services:
-            context_parts.append(f"SERVICES: {', '.join(services)}")
+            context_parts.append(f"KEY SERVICES: {', '.join(services)}")
         
-        # Add content preferences
+        # BRAND KEYWORDS for SEO integration
+        brand_keywords = client.get('brand_keywords', [])
+        if brand_keywords:
+            context_parts.append(f"BRAND KEYWORDS: {', '.join(brand_keywords[:8])}")  # Top 8
+        
+        # SEO FOCUS (Enhanced)
+        seo_focus = client.get('seo_focus', [])
+        if seo_focus:
+            context_parts.append(f"SEO FOCUS KEYWORDS: {', '.join(seo_focus)}")
+        
+        # CONTENT PREFERENCES
         content_prefs = client.get('content_preferences', {})
         if content_prefs:
             prefs_text = []
-            if content_prefs.get('tone'):
-                prefs_text.append(f"tone should be {content_prefs['tone']}")
+            
+            tone = content_prefs.get('tone')
+            if tone:
+                prefs_text.append(f"tone: {tone}")
+            
             if content_prefs.get('include_statistics'):
                 prefs_text.append("include relevant statistics")
+            
             if content_prefs.get('include_patient_stories') == False:
                 prefs_text.append("avoid patient stories")
+            
+            if content_prefs.get('focus_on_function'):
+                prefs_text.append("focus on restoring function over just pain relief")
+            
+            if content_prefs.get('avoid_surgery_references'):
+                prefs_text.append("avoid surgery references completely")
             
             if prefs_text:
                 context_parts.append(f"CONTENT PREFERENCES: {', '.join(prefs_text)}")
         
-        # Add SEO focus keywords
-        seo_focus = client.get('seo_focus', [])
-        if seo_focus:
-            context_parts.append(f"PRIMARY SEO TARGETS: {', '.join(seo_focus)}")
+        # LOCATION DETAILS (if multiple locations)
+        location_refs = client.get('location_references', {})
+        if location_refs:
+            context_parts.append(f"PRACTICE LOCATIONS: {len(location_refs)} locations across {client.get('location', 'the area')}")
         
-        # Add competitor awareness
+        # COMPETITORS
         competitors = client.get('competitors', [])
         if competitors:
             context_parts.append(f"MAIN COMPETITORS: {', '.join(competitors)}")

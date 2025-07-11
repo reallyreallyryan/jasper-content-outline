@@ -3,5 +3,4 @@ venv
 
 credentials.json
 token.json
-*.jsoncredentials.json
-token.json
+*.json

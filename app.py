@@ -208,53 +208,62 @@ class JasperAssistant:
                         "location": client_data.get("location", client_info["location"])
                     }
 
-        client_context_section = f"ADDITIONAL CLIENT INTELLIGENCE:\n{client_context}\n" if client_context else ""
-        client_alignment_note = "- Align with the client's brand voice and content preferences shown above" if client_context else ""
+        client_context_section = f"COMPREHENSIVE CLIENT INTELLIGENCE:\n{client_context}\n" if client_context else ""
+        client_alignment_note = "- Follow ALL messaging rules, brand differentiators, and content preferences above" if client_context else ""
         
-        prompt = f"""Hey! I'm Jasper, your SEO content assistant. I need to create a blog assignment that matches your exact workflow template.
+        prompt = f"""Hey! I'm Jasper, your advanced SEO content assistant. I need to create a blog assignment that matches your exact workflow template and leverages deep client intelligence.
 
-BLOG TOPIC: {request.blog_topic}
+    BLOG TOPIC: {request.blog_topic}
 
-CLIENT CONTEXT:
-- Practice Name: {client_info['name']}
-- Medical Specialty: {client_info['specialty']}  
-- Location: {client_info['location']}
+    BASIC CLIENT CONTEXT:
+    - Practice Name: {client_info['name']}
+    - Medical Specialty: {client_info['specialty']}  
+    - Location: {client_info['location']}
 
-{client_context_section}
+    {client_context_section}
 
-Please generate content in this EXACT JSON format:
-{{
-  "title": "SEO optimized title tag under 60 characters",
-  "meta": "Compelling meta description under 160 characters",
-  "primaryKeywords": "Main target keyword phrase",
-  "keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"],
-  "cta": "Specific call-to-action recommendation for this content",
-  "resources": ["Resource 1 suggestion", "Resource 2 suggestion", "Resource 3 suggestion"],
-  "h1": "Main page heading",
-  "h2Sections": [
+    Please generate content in this EXACT JSON format:
     {{
-      "heading": "H2 section title",
-      "h3Content": "- Brief bullet point guidance\\n- What key info to include\\n- Specific angle or focus"
+    "title": "SEO optimized title tag under 60 characters",
+    "meta": "Compelling meta description under 160 characters",
+    "primaryKeywords": "Main target keyword phrase",
+    "keywords": ["keyword1", "keyword2", "keyword3", "keyword4", "keyword5"],
+    "cta": "Specific call-to-action recommendation for this content",
+    "resources": ["Resource 1 suggestion", "Resource 2 suggestion", "Resource 3 suggestion"],
+    "h1": "Main page heading",
+    "h2Sections": [
+        {{
+        "heading": "H2 section title",
+        "h3Content": "Detailed content guidance (15-20 words). Specific angles and key information to include. Important points that align with brand messaging. Actionable guidance for content writers."
+        }}
+    ],
+    "url": "/url-slug-format",
+    "jasperNotes": "Jaspers Insights should include strategic insights that can explain the important of the content being developed in reference to overall SEO strategy and being found in Organic Search results and GEO/AI. Mention why certain topics are being discussed and what keywords we are targeting and why. Keep it high-level and simple for a mid-level practice admin or CEO to understand."
     }}
-  ],
-  "url": "/url-slug-format",
-  "jasperNotes": "Additional strategic insights from Jasper"
-}}
 
-CRITICAL REQUIREMENTS:
-- Generate EXACTLY 4-5 H2 sections minimum (not just 1-2)
-- H3 content should be 3-4 SHORT bullet points only
-- Each bullet should be 5-10 words max, not full sentences
-- Follow this H2 structure: Introduction → Symptoms/Signs → Treatment Options → Why Choose Us → Call to Action
-- Make it specific to {client_info['specialty']} in {client_info['location']}
-- Keep H3 guidance concise - just quick notes for content writers
-{client_alignment_note}
+    CRITICAL REQUIREMENTS:
+    - Generate EXACTLY 4-5 H2 sections minimum (not just 1-2)
+    - Content guidance should be 4-5 DETAILED bullet points per section
+    - Each bullet should be 15-20 words providing specific, actionable guidance
+    - Ensure H2s follow SEO and GEO best practices, including locality and long tail keywords.
+    - Make the last H2 a strong CTA that references the on-page content with services offered.
+    - Make it specific to {client_info['specialty']} in {client_info['location']}
+    - Content bullets should give writers clear direction on what to include
+    {client_alignment_note}
 
-Example H3 format:
-- Define condition simply
-- Include prevalence stats  
-- Mention patient concerns
-- Add reassuring tone"""
+ENHANCED CONTENT REQUIREMENTS:
+- Provide specific content direction as paragraph text, not bullet points
+- Include specific statistics, facts, or details that writers should mention
+- Highlight and use 10-15 Keywords that would be most important to include for this blog to rank in organic search and ai search.
+- Focus on what information to include, not how to write it
+- Avoid generic phrases like "set the tone", "maintain tone", "use accessible language"
+- Give concrete, actionable content guidance that writers can immediately implement
+- Format as flowing sentences separated by periods, not bullet points
+
+Example enhanced format:
+"Mention how condition affects 40% of adults over 35. Explain how fluoroscopic guidance increases procedure accuracy compared to blind injections. Highlight fellowship-trained expertise and mention NASS-recognized training program as differentiator. Address specific patient concerns about downtime and mention same-day return to activity for most patients."
+
+    Remember: We're creating a comprehensive content brief that empowers writers to create amazing, brand-aligned content!"""
         
         try:
             response = openai_client.chat.completions.create(
@@ -262,7 +271,7 @@ Example H3 format:
                 messages=[
                     {
                         "role": "system",
-                        "content": f"You are Jasper, an expert SEO content strategist specializing in healthcare marketing. You create content that converts patients into appointments. {f'You have deep knowledge about this specific client and should tailor content accordingly.' if client_context else ''} CRITICAL: Always respond with ONLY valid JSON format - no extra text before or after the JSON."
+                        "content": f"You are Jasper, an expert SEO content strategist specializing in healthcare marketing. You create detailed content briefs that convert patients into appointments. {f'You have comprehensive knowledge about this specific client including their messaging rules, brand differentiators, and content preferences. Use this intelligence to create highly personalized content.' if client_context else ''} CRITICAL: Always respond with ONLY valid JSON format - no extra text before or after the JSON."
                     },
                     {
                         "role": "user",
@@ -270,7 +279,7 @@ Example H3 format:
                     }
                 ],
                 temperature=0.7,
-                max_tokens=2500
+                max_tokens=3000  # Increased for more detailed content
             )
             
             ai_response = response.choices[0].message.content.strip()
@@ -283,9 +292,9 @@ Example H3 format:
             
             content = json.loads(ai_response)
             
-            success_message = "Jasper created your blog assignment template! 📋✨"
+            success_message = "Jasper created your enhanced blog assignment with detailed content guidance! 📋✨"
             if client_context:
-                success_message = f"Jasper created a personalized blog assignment for {client_info['name']}! 🎯✨"
+                success_message = f"Jasper created a deeply personalized blog assignment for {client_info['name']} using comprehensive client intelligence! 🧠🎯✨"
             
             return {
                 "success": True,
