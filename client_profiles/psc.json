@@ -1,0 +1,107 @@
+{
+  "client_id": "looknatural-psc",
+  "name": "The Plastic Surgery Center",
+  "brand_name": "LookNatural",
+  "voice_tone": "Professional, compassionate, authoritative",
+  "specialty": "Plastic and Reconstructive Surgery",
+  "location": "New Jersey, New York, Pennsylvania",
+  "target_audience": {
+    "primary": [
+      "Adults 30–65 seeking facial rejuvenation, body contouring, or breast procedures",
+      "Post-weight-loss patients with excess skin",
+      "Women seeking mommy makeovers or post-pregnancy restoration"
+    ],
+    "secondary": [
+      "Referring dermatologists, PCPs, OB/GYNs, and bariatric surgeons",
+      "Caregivers, spouses, and adult children supporting elective surgery decisions"
+    ]
+  },
+  "brand_keywords": [
+    "plastic surgery near me",
+    "deep plane facelift",
+    "breast augmentation and lift",
+    "New Jersey plastic surgeon",
+    "board-certified aesthetic experts",
+    "customized surgical planning",
+    "minimally invasive techniques",
+    "natural-looking results"
+  ],
+  "brand_mission": "We deliver advanced surgical and non-surgical aesthetic treatments designed to restore natural beauty, confidence, and comfort. Every plan is customized for long-lasting results and an elevated patient experience.",
+  "slogan": "Look Natural. Feel Confident.",
+  "tagline": "Elevating confidence through expert aesthetic care.",
+  "messaging_rules": {
+    "do": [
+      "Highlight board certification and surgeon experience",
+      "Use procedure names and outcomes patients search for",
+      "Emphasize natural-looking, long-lasting results",
+      "Mention full-service care—from consultation to post-op recovery"
+    ],
+    "donot": [
+      "Avoid phrases like 'plastic surgery miracle' or 'overnight transformation'",
+      "Do not use unrealistic before/after expectations",
+      "Avoid competitor procedure branding (e.g., 'QuickLift')",
+      "Do not use overly clinical or intimidating language"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "Deep plane facelift specialists",
+      "On-site surgical centers with hospital-grade technology",
+      "Facial and breast reconstruction after trauma or cancer",
+      "Leaders in high-definition liposuction and body sculpting",
+      "Multiple board-certified plastic surgeons on staff"
+    ],
+    "philosophical_strengths": [
+      "Customized, patient-centered care plans",
+      "Focus on natural results, never overdone",
+      "Supportive, transparent consult process",
+      "Post-op care and access that exceeds industry standard"
+    ],
+    "organizational_strengths": [
+      "Multi-state practice with cohesive brand and training standards",
+      "Recognized as Top Doctors by Castle Connolly and NJ Monthly",
+      "Internal fellowship and resident education programs",
+      "In-house marketing, photography, and patient education support"
+    ]
+  },
+  "topic_targeting": "Balance procedure-focused content (e.g., facelift, tummy tuck) with condition-focused content (e.g., sagging skin, postpartum body changes). Align content with seasonal and life-stage trends.",
+  "procedure_language": [
+    "Use plain language supported by accurate medical terminology",
+    "Explain techniques simply—e.g., 'fat transfer' before 'autologous fat grafting'",
+    "Focus on benefits and outcomes rather than surgical mechanics"
+  ],
+  "services": [
+    "Facelift and Neck Lift",
+    "Breast Augmentation and Reduction",
+    "Tummy Tuck and Body Contouring",
+    "Post-Weight Loss Surgery",
+    "Non-Surgical Facial Rejuvenation",
+    "Mommy Makeover Procedures"
+  ],
+  "location_references": {
+    "Main Office": "535 Sycamore Avenue, Shrewsbury, NJ 07702",
+    "Secondary Location": "123 Highland Avenue, Suite 103, Glen Ridge, NJ 07028",
+    "Future Location": "Planned Expansion in Princeton, NJ"
+  },
+  "competitors": [
+    "Premiere Plastic Surgery Group",
+    "East Coast Aesthetic Institute",
+    "NJ Rejuvenation Center"
+  ],
+  "content_preferences": {
+    "tone": "Warm, expert, and empowering",
+    "length": "500–800 words for blogs; 800–1500 for core service pages",
+    "include_statistics": true,
+    "include_patient_stories": true,
+    "focus_on_function": true,
+    "avoid_surgery_references": false,
+    "other_preferences": "Incorporate visual elements like anatomy graphics, before/after concepts, and recovery timelines where possible"
+  },
+  "seo_focus": [
+    "plastic surgeon near [location]",
+    "procedure name + natural results",
+    "treatment for [condition] + [location]",
+    "brand name + plastic surgery",
+    "specialized procedure + surgeon name"
+  ]
+}

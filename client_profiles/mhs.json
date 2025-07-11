@@ -1,0 +1,108 @@
+{
+  "client_id": "mhs",
+  "name": "My Houston Surgeons",
+  "brand_name": "my-houston-surgeons",
+  "voice_tone": "Professional, compassionate, authoritative",
+  "specialty": "Multi-specialty surgical practice (Cosmetic, Reconstructive, ENT, Sinus, Head & Neck)",
+  "location": "Houston and The Woodlands, Texas",
+  "target_audience": {
+    "primary": [
+      "Adults aged 30–65 seeking cosmetic surgery or facial rejuvenation",
+      "Patients experiencing sinus or nasal obstruction, including deviated septum and sleep apnea",
+      "Women exploring post-weight loss surgery or breast reconstruction after mastectomy"
+    ],
+    "secondary": [
+      "Referring physicians (ENTs, oncologists, bariatric surgeons)",
+      "Family members supporting elective or reconstructive surgery patients"
+    ]
+  },
+  "brand_keywords": [
+    "breast reconstruction",
+    "sinus surgery",
+    "deep plane facelift",
+    "Houston plastic surgeon",
+    "board-certified specialists",
+    "patient-centered care",
+    "top ENT surgeons",
+    "natural-looking results"
+  ],
+  "brand_mission": "To provide expert surgical care across cosmetic, reconstructive, and ENT specialties with a personalized, patient-first approach that prioritizes both aesthetic and functional outcomes.",
+  "slogan": "Exceptional Care. Expert Results.",
+  "tagline": "Where advanced surgery meets compassionate care.",
+  "messaging_rules": {
+    "do": [
+      "Use board-certified and fellowship-trained credentials",
+      "Emphasize natural results and functional restoration",
+      "Highlight surgeon-specific expertise and outcomes",
+      "Use language that promotes confidence, trust, and clarity"
+    ],
+    "donot": [
+      "Overpromise with terms like 'perfect' or 'guaranteed results'",
+      "Use casual terms like 'nose job'—opt for 'rhinoplasty' or 'nasal surgery'",
+      "Mention outdated techniques or generic service descriptions",
+      "Include stock claims that don’t reflect actual offerings or credentials"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "Double board-certified facial plastic and reconstructive surgeons",
+      "Advanced ENT procedures including Inspire implants and balloon sinuplasty",
+      "Specialized breast reconstruction, including DIEP flap and explant with lift",
+      "Collaborative care between ENT, cosmetic, and reconstructive teams",
+      "State-of-the-art in-office surgical facilities and diagnostics"
+    ],
+    "philosophical_strengths": [
+      "Tailored surgical plans based on patient anatomy and goals",
+      "Blending aesthetic artistry with medical precision",
+      "Focus on preserving function while enhancing appearance",
+      "Holistic consultation process with honest recommendations"
+    ],
+    "organizational_strengths": [
+      "Multi-location convenience in Houston and The Woodlands",
+      "Recognition by Castle Connolly and Top Doctor listings",
+      "Access to a multidisciplinary team in one practice",
+      "Dedicated insurance support for reconstructive and ENT procedures",
+      "Strong physician referral network and collaborative approach"
+    ]
+  },
+  "topic_targeting": "Procedure-focused content should highlight results, surgeon expertise, and recovery expectations. Condition-focused content should educate, build trust, and explain treatment pathways that lead to consultation or diagnosis confirmation.",
+  "procedure_language": [
+    "Use terms like 'rhinoplasty' instead of 'nose job'",
+    "Use clear but professional language (avoid overly technical or overly casual tone)",
+    "When applicable, explain procedures using analogies or visual aids to support understanding"
+  ],
+  "services": [
+    "Breast Reconstruction",
+    "Functional & Cosmetic Rhinoplasty",
+    "Sinus Surgery (e.g. Balloon Sinuplasty, Septoplasty)",
+    "Facial Rejuvenation (Deep Plane Facelift, Eyelid Surgery)",
+    "Inspire Implant for Sleep Apnea",
+    "Explant with Lift and Fat Grafting"
+  ],
+  "location_references": {
+    "Main Office": "9230 Katy Freeway, Suite 600, Houston, TX 77055",
+    "Secondary Location": "9200 Pinecroft Dr, Suite 465, The Woodlands, TX 77380",
+    "Future Location": "TBD"
+  },
+  "competitors": [
+    "The Aesthetic Center for Plastic Surgery (ACPS)",
+    "Texas ENT Specialists",
+    "Facial Plastic Surgery Associates – Houston"
+  ],
+  "content_preferences": {
+    "tone": "Professional and educational, but reassuring and empathetic",
+    "length": "750–1,200 words for blogs; 300–500 words for provider pages",
+    "include_statistics": true,
+    "include_patient_stories": true,
+    "focus_on_function": true,
+    "avoid_surgery_references": false,
+    "other_preferences": "Use real surgeon names where appropriate; include internal links to procedure pages and bios"
+  },
+  "seo_focus": [
+    "breast reconstruction Houston",
+    "sinus surgery ENT Houston",
+    "deep plane facelift Texas",
+    "my houston surgeons + rhinoplasty",
+    "inspire implant for sleep apnea Houston"
+  ]
+}

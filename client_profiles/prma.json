@@ -1,0 +1,107 @@
+{
+  "client_id": "prma",
+  "name": "PRMA Plastic Surgery",
+  "brand_name": "PRMA",
+  "voice_tone": "Professional, compassionate, authoritative",
+  "specialty": "Advanced breast reconstruction, microsurgery, lymphedema treatment, and cosmetic surgery",
+  "location": "San Antonio, Texas",
+  "target_audience": {
+    "primary": [
+      "Women aged 30–65 undergoing or considering breast reconstruction after mastectomy",
+      "Breast cancer survivors seeking delayed or revision reconstruction",
+      "Women considering cosmetic surgery to restore or enhance body confidence"
+    ],
+    "secondary": [
+      "Referring breast surgeons and oncologists",
+      "Family members supporting surgical decisions"
+    ]
+  },
+  "brand_keywords": [
+    "breast reconstruction",
+    "DIEP flap surgery",
+    "microsurgical breast reconstruction",
+    "San Antonio breast reconstruction",
+    "restoring sensation after mastectomy",
+    "patient-centered care",
+    "breast reconstruction specialists",
+    "natural breast reconstruction options"
+  ],
+  "brand_mission": "To restore confidence and wholeness through advanced breast reconstruction techniques, exceptional outcomes, and compassionate patient care.",
+  "slogan": "Where Compassion Meets Excellence",
+  "tagline": "Advanced Breast Reconstruction. Unmatched Expertise.",
+  "messaging_rules": {
+    "do": [
+      "Use patient-first language",
+      "Highlight advanced surgical options like DIEP flap",
+      "Emphasize natural-looking results and restored sensation",
+      "Reinforce insurance coverage and virtual consultations"
+    ],
+    "donot": [
+      "Use generic or cosmetic language for reconstruction content",
+      "Equate reconstruction with vanity",
+      "Reference 'boob job' or non-clinical terms",
+      "Suggest all patients qualify for the same procedures"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "Board-certified plastic surgeons with microsurgical training",
+      "Over 13,000 flap-based reconstructions performed",
+      "Pioneers in sensory nerve reconstruction post-mastectomy",
+      "99%+ flap success rate",
+      "On-site surgical center with advanced recovery protocols"
+    ],
+    "philosophical_strengths": [
+      "Patient education and empowerment",
+      "Emphasis on natural, sustainable results",
+      "Multidisciplinary support for every step of the journey",
+      "Survivorship-focused care model"
+    ],
+    "organizational_strengths": [
+      "25+ years of breast reconstruction leadership",
+      "National referral center for complex cases",
+      "On-demand virtual consultations",
+      "Integrated care with PRMA Enhance for aesthetics and wellness"
+    ]
+  },
+  "topic_targeting": "Tailor content based on patient goals (e.g., restoring symmetry, rebuilding after radiation, cosmetic enhancement). Focus on real concerns post-mastectomy or post-treatment.",
+  "procedure_language": [
+    "Use terms like 'DIEP flap', 'tissue-based reconstruction', and 'natural breast reconstruction'",
+    "Describe the benefits in accessible language, then offer clinical detail",
+    "Use a patient-friendly tone with supportive, authoritative explanations"
+  ],
+  "services": [
+    "DIEP Flap Breast Reconstruction",
+    "Implant-Based Breast Reconstruction",
+    "Lymphedema Surgery (VLNT, LVA)",
+    "Sensation Restoration Surgery",
+    "Microsurgical Revision Procedures",
+    "Cosmetic Surgery (breast, body, face)"
+  ],
+  "location_references": {
+    "Main Office": "9635 Huebner Rd, San Antonio, TX 78240",
+    "Secondary Location": "540 Madison Oak Dr, Suite 600, San Antonio, TX 78258",
+    "Future Location": "N/A"
+  },
+  "competitors": [
+    "MD Anderson Cancer Center",
+    "UT Health San Antonio Plastic Surgery",
+    "Regional independent plastic surgeons offering reconstruction"
+  ],
+  "content_preferences": {
+    "tone": "Reassuring, expert, clear, hopeful",
+    "length": "600–900 words for blogs, 200–300 words for service pages",
+    "include_statistics": true,
+    "include_patient_stories": true,
+    "focus_on_function": true,
+    "avoid_surgery_references": false,
+    "other_preferences": "Include visual aids, FAQs, links to consultation pages"
+  },
+  "seo_focus": [
+    "breast reconstruction San Antonio",
+    "DIEP flap breast surgery Texas",
+    "mastectomy reconstruction options San Antonio",
+    "PRMA Plastic Surgery breast specialists",
+    "natural breast reconstruction after cancer"
+  ]
+}

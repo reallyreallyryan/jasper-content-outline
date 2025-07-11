@@ -1,0 +1,105 @@
+{
+  "client_id": "preema",
+  "name": "PREEMA Regenerative Aesthetics",
+  "brand_name": "preema",
+  "voice_tone": "Refined, confident, luxurious, medically grounded",
+  "specialty": "Regenerative Aesthetics & Non-Surgical Facial Rejuvenation",
+  "location": "San Antonio, TX",
+  "target_audience": {
+    "primary": [
+      "Health-conscious women and men ages 30–65 seeking natural, subtle anti-aging solutions",
+      "Patients experiencing early signs of facial volume loss, fine lines, or thinning hair",
+      "Individuals interested in proactive, holistic beauty and regenerative skin care"
+    ],
+    "secondary": [
+      "Referring plastic surgeons or dermatologists",
+      "Skincare-savvy patients seeking advanced medical-grade alternatives to cosmetic spas"
+    ]
+  },
+  "brand_keywords": [
+    "regenerative aesthetics",
+    "microneedling with PRP",
+    "PRF under-eye treatment",
+    "hair restoration San Antonio",
+    "natural-looking results",
+    "holistic anti-aging approach",
+    "aesthetic medicine experts",
+    "collagen stimulation therapy"
+  ],
+  "brand_mission": "PREEMA blends the elegance of a luxury spa with the precision of regenerative medicine to deliver personalized, science-based treatments that support long-term beauty, wellness, and confidence.",
+  "slogan": "Beauty Rooted in Regeneration",
+  "tagline": "Science-backed treatments. Subtle, lasting results.",
+  "messaging_rules": {
+    "do": [
+      "Use medical and anatomical accuracy when describing treatments",
+      "Emphasize personalization and regenerative approach",
+      "Reinforce the connection between internal wellness and aesthetic outcomes",
+      "Use language that supports natural, graceful, and confident results"
+    ],
+    "donot": [
+      "Avoid overly casual or trendy slang (e.g., 'get snatched')",
+      "Don’t use fear-based or shame-driven messaging",
+      "Avoid references to 'plastic surgery' unless contextually tied to PRMA",
+      "Do not use overly dramatic claims (e.g., instant results, miracle cure)"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "Advanced use of PRF and Exosomes for facial rejuvenation and hair restoration",
+      "Microneedling with regenerative biologics",
+      "Expert-led injectables with a focus on subtlety and balance",
+      "Rooted in PRMA Plastic Surgery’s legacy of clinical excellence",
+      "Medical-grade products and precision techniques used in every service"
+    ],
+    "philosophical_strengths": [
+      "Whole-self wellness approach",
+      "Beauty is more than skin deep—it’s cellular, emotional, and lasting",
+      "Emphasis on patient education, safety, and empowerment",
+      "Each visit is a journey of refinement and renewal"
+    ],
+    "organizational_strengths": [
+      "Integrated with PRMA Plastic Surgery",
+      "Highly trained providers with backgrounds in medicine and aesthetics",
+      "Boutique, luxury-level patient experience with medical accountability",
+      "Exclusive focus on regenerative, non-surgical solutions"
+    ]
+  },
+  "topic_targeting": "Balance between condition-focused topics (e.g., dark circles, volume loss) and procedure-focused content (e.g., PRF vs PRP, microneedling with exosomes). Include seasonal care, skin longevity, and trending anti-aging topics.",
+  "procedure_language": [
+    "Use clear, patient-friendly terminology supported by clinical credibility",
+    "Always define terms like PRF, exosomes, microneedling for lay understanding",
+    "Blend technical accuracy with an inviting, wellness-forward tone"
+  ],
+  "services": [
+    "Wrinkle-Relaxing Injectables",
+    "Dermal Fillers",
+    "Microneedling with PRP/Exosomes",
+    "PRF Injections",
+    "Hair Restoration with PRP",
+    "Medical-Grade Facials & Peels"
+  ],
+  "location_references": {
+    "Main Office": "540 Madison Oak Dr, Suite 600, San Antonio, TX 78258"
+  },
+  "competitors": [
+    "Sonterra Dermatology",
+    "Skin Benefit Dermatology",
+    "Alamo Heights Dermatology"
+  ],
+  "content_preferences": {
+    "tone": "Educational, elegant, empowering",
+    "length": "500–800 words per blog post; 350–500 words for service pages",
+    "include_statistics": true,
+    "include_patient_stories": false,
+    "focus_on_function": true,
+    "avoid_surgery_references": true,
+    "other_preferences": "Use subheadings and bullet points to improve scanability; include internal links to relevant treatments and booking page"
+  },
+  "seo_focus": [
+    "PRF facial San Antonio",
+    "microneedling with PRP San Antonio",
+    "under-eye rejuvenation PRF",
+    "hair restoration with PRP San Antonio",
+    "PREEMA regenerative aesthetics"
+  ]
+}

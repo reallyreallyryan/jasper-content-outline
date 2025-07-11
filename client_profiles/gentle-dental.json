@@ -1,0 +1,106 @@
+{
+  "client_id": "gd",
+  "name": "Gentle Dental",
+  "brand_name": "gentle-dental",
+  "voice_tone": "Professional, compassionate, authoritative",
+  "specialty": "General & Specialty Dentistry",
+  "location": "Oregon, Kansas, Oklahoma, Nevada, Arizona, California, Hawaii",
+  "target_audience": {
+    "primary": [
+      "Families with children seeking comprehensive dental care",
+      "Young adults needing preventative or cosmetic treatments",
+      "Adults and seniors managing ongoing dental or oral health concerns"
+    ],
+    "secondary": [
+      "Referring providers including orthodontists and oral surgeons",
+      "Patients without dental insurance"
+    ]
+  },
+  "brand_keywords": [
+    "general dentistry",
+    "cosmetic dentistry",
+    "wisdom teeth removal",
+    "dentist in [city/state]",
+    "affordable dental care",
+    "gentle dental approach",
+    "experienced dental professionals",
+    "smile plan for uninsured patients"
+  ],
+  "brand_mission": "Gentle Dental is committed to providing high-quality, affordable dental care in a compassionate environment, helping patients achieve lasting oral health and confident smiles.",
+  "slogan": "Smile. It's a Gentle Dental thing.",
+  "tagline": "Gentle on your schedule. Gentle on your wallet.",
+  "messaging_rules": {
+    "do": [
+      "Highlight affordability and accessibility",
+      "Use friendly, patient-centered language",
+      "Mention Smile Plan and financing options when relevant",
+      "Emphasize preventive care and patient comfort"
+    ],
+    "donot": [
+      "Use overly clinical or intimidating language",
+      "Downplay the importance of dental visits",
+      "Mention competitor offers",
+      "Use vague claims like 'world-class' or 'state-of-the-art' without context"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "Comprehensive in-house services (e.g., implants, ortho, oral surgery)",
+      "Experienced multi-specialty team",
+      "Modern technology for diagnostics and treatment",
+      "Pediatric-friendly practices"
+    ],
+    "philosophical_strengths": [
+      "Patient-first approach to care",
+      "Inclusive and judgment-free atmosphere",
+      "Emphasis on education and prevention",
+      "Flexible scheduling and payment options"
+    ],
+    "organizational_strengths": [
+      "Large regional network of locations",
+      "Smile Plan for uninsured patients",
+      "Yext-supported profile management",
+      "Photo-optimized listings and strong local SEO strategy"
+    ]
+  },
+  "topic_targeting": "Align content topics with seasonal care (e.g., back-to-school dental, summer wisdom teeth), conditions (bad breath, gum disease), or procedures (cleanings, crowns, whitening). Match tone and intent to audience needs.",
+  "procedure_language": [
+    "Use clear, layman-friendly explanations of procedures",
+    "Focus on benefits and comfort rather than technical jargon",
+    "Mention gentle techniques and pain management"
+  ],
+  "services": [
+    "Dental Cleanings & Exams",
+    "Cosmetic Dentistry",
+    "Pediatric Dentistry",
+    "Wisdom Teeth Removal",
+    "Dental Implants",
+    "Orthodontics (including Invisalign)"
+  ],
+  "location_references": {
+    "Main Office": "Tigard, OR 97223",
+    "Secondary Location": "Kirkland, WA 98033",
+    "Future Location": ""
+  },
+  "competitors": [
+    "Aspen Dental",
+    "Western Dental",
+    "Pacific Dental Services"
+  ],
+  "content_preferences": {
+    "tone": "Friendly, helpful, educational",
+    "length": "500–700 words per blog post",
+    "include_statistics": true,
+    "include_patient_stories": false,
+    "focus_on_function": true,
+    "avoid_surgery_references": false,
+    "other_preferences": "Use strong CTA language for appointments, benefit reminders, and Smile Plan enrollment"
+  },
+  "seo_focus": [
+    "dentist + [city/state]",
+    "wisdom teeth removal + city",
+    "bad breath causes + treatment + state",
+    "gentle dental + location",
+    "affordable dental care + area"
+  ]
+}

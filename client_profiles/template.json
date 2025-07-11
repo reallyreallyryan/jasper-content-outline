@@ -1,0 +1,108 @@
+{
+  "client_id": "client-shortname",
+  "name": "Practice Name Here",
+  "brand_name": "brand-identifier",
+  "voice_tone": "Professional, compassionate, authoritative",
+  "specialty": "Medical Specialty",
+  "location": "City, State",
+  "target_audience": {
+    "primary": [
+      "Primary demographic (age, condition, etc.)",
+      "Second primary group",
+      "Third primary group"
+    ],
+    "secondary": [
+      "Referring providers",
+      "Other secondary audience"
+    ]
+  },
+  "brand_keywords": [
+    "primary service keyword",
+    "secondary service keyword",
+    "specialty procedure",
+    "location-based keyword",
+    "brand differentiator",
+    "treatment approach",
+    "expertise keyword",
+    "patient benefit"
+  ],
+  "brand_mission": "Brief mission statement about what they do and how they help patients achieve better outcomes.",
+  "slogan": "Their Main Slogan",
+  "tagline": "Supporting Tagline",
+  "messaging_rules": {
+    "do": [
+      "Specific messaging guideline they want followed",
+      "Language or terms they prefer to use",
+      "Key points they want emphasized",
+      "Unique value propositions to highlight"
+    ],
+    "donot": [
+      "Words or phrases to avoid (like 'sciatica' → 'lumbar radiculopathy')",
+      "Topics or approaches to stay away from",
+      "Competitor language to avoid",
+      "Generic terms they don't want used"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "Specific clinical expertise or certifications",
+      "Unique procedures or technologies they offer",
+      "Training or credentials that set them apart",
+      "Clinical outcomes or success rates",
+      "Equipment or facility advantages"
+    ],
+    "philosophical_strengths": [
+      "Their approach to patient care",
+      "Treatment philosophy that makes them different",
+      "Patient experience focus areas",
+      "Values that guide their practice"
+    ],
+    "organizational_strengths": [
+      "Practice model advantages",
+      "Recognition or awards",
+      "Training programs they offer",
+      "Operational advantages",
+      "Network or partnership benefits"
+    ]
+  },
+  "topic_targeting": "How to tailor content based on specific topics (e.g., procedure-focused vs. condition-focused)",
+  "procedure_language": [
+    "Specific terminology requirements for procedures",
+    "How to describe their unique approach",
+    "Technical vs. patient-friendly language preferences"
+  ],
+  "services": [
+    "Primary Service 1",
+    "Primary Service 2", 
+    "Secondary Service 1",
+    "Secondary Service 2",
+    "Specialized Procedure 1",
+    "Specialized Procedure 2"
+  ],
+  "location_references": {
+    "Main Office": "Full address with zip",
+    "Secondary Location": "Full address with zip",
+    "Future Location": "Address if relevant"
+  },
+  "competitors": [
+    "Main Competitor 1",
+    "Main Competitor 2",
+    "Regional Competitor"
+  ],
+  "content_preferences": {
+    "tone": "Specific tone guidance",
+    "length": "Preferred word count range",
+    "include_statistics": true,
+    "include_patient_stories": false,
+    "focus_on_function": true,
+    "avoid_surgery_references": false,
+    "other_preferences": "Any other specific content guidance"
+  },
+  "seo_focus": [
+    "primary keyword + location",
+    "procedure + specialty",
+    "condition + treatment + location", 
+    "brand name + specialty",
+    "unique service + area"
+  ]
+}

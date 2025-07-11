@@ -1,0 +1,109 @@
+{
+  "client_id": "hues",
+  "name": "The Center for Hand and Upper Extremity Surgery",
+  "brand_name": "HUES",
+  "voice_tone": "Professional, compassionate, authoritative",
+  "specialty": "Orthopedic Micro Surgery – Hand, Wrist, Elbow, and Shoulder",
+  "location": "New Jersey and Ohio",
+  "target_audience": {
+    "primary": [
+      "Adults ages 35+ with chronic joint pain or arthritis",
+      "Active individuals or athletes with upper extremity injuries",
+      "Older adults at risk for fractures or degenerative conditions"
+    ],
+    "secondary": [
+      "Primary care and urgent care physicians referring for specialty evaluation",
+      "Physical therapists and occupational therapists"
+    ]
+  },
+  "brand_keywords": [
+    "hand and wrist surgery",
+    "nerve compression treatment",
+    "microsurgical joint reconstruction",
+    "orthopedic surgeon in New Jersey",
+    "patient-centered care",
+    "evidence-based treatment",
+    "board-certified hand surgeon",
+    "restore function and relieve pain"
+  ],
+  "brand_mission": "To deliver expert, evidence-based care for hand, wrist, elbow, and shoulder conditions through a multidisciplinary approach that improves long-term function, reduces pain, and enhances patient quality of life.",
+  "slogan": "Expert Care for Every Movement",
+  "tagline": "Restoring Function. Relieving Pain. Rebuilding Lives.",
+  "messaging_rules": {
+    "do": [
+      "Use patient-first language that emphasizes relief and recovery",
+      "Refer to ‘microsurgery’ when applicable to describe advanced precision techniques",
+      "Emphasize restoration of movement and function",
+      "Highlight surgeon expertise and individualized care plans"
+    ],
+    "donot": [
+      "Avoid using casual or overly clinical tone",
+      "Do not refer to patients as ‘cases’",
+      "Avoid generic terms like ‘pain doctors’ or ‘bone clinic’",
+      "Don’t overuse the word ‘cure’—focus on management and improvement",
+      "Do not mention non-surgical options"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "Fellowship-trained hand and upper extremity surgeons",
+      "Microsurgical techniques for nerve, tendon, and joint procedures",
+      "Advanced treatment of nonunion and complex fractures",
+      "High success rate in revision surgeries and limb preservation",
+      "State-of-the-art surgical suites and diagnostic tools"
+    ],
+    "philosophical_strengths": [
+      "Collaborative, patient-centered treatment planning",
+      "Transparent communication throughout diagnosis and recovery",
+      "Holistic approach to pain and function",
+      "Long-term focus on restoring quality of life"
+    ],
+    "organizational_strengths": [
+      "Multistate presence in NJ and OH",
+      "Recognized referral center for complex upper extremity cases",
+      "Integrated post-op rehab partnerships",
+      "Streamlined patient intake and scheduling systems",
+      "Collaborative network of referring providers"
+    ]
+  },
+  "topic_targeting": "Mix of condition-first (e.g., carpal tunnel syndrome) and procedure-first (e.g., microsurgical tendon repair) content, based on patient awareness and search intent.",
+  "procedure_language": [
+    "Use 'microsurgery' when applicable to describe specialized techniques",
+    "Explain procedures using plain language first, followed by optional technical detail",
+    "Avoid overly graphic language—focus on outcomes, function, and recovery"
+  ],
+  "services": [
+    "Carpal Tunnel Release",
+    "Arthritis Surgery",
+    "Tendon Repair",
+    "Fracture Management",
+    "Microsurgical Nerve Repair",
+    "Joint Reconstruction"
+  ],
+  "location_references": {
+    "Main Office": "331 Newman Springs Rd, Red Bank, NJ, 07701",
+    "Secondary Location": "",
+    "Future Location": ""
+  },
+  "competitors": [
+    "Rothman Orthopaedics",
+    "Summit Health Orthopedics",
+    "Ohio State University Wexner Medical Center – Hand Surgery"
+  ],
+  "content_preferences": {
+    "tone": "Professional but accessible, with a balance of warmth and authority",
+    "length": "500–1000 words for blogs, up to 1,200 for pillar content",
+    "include_statistics": true,
+    "include_patient_stories": false,
+    "focus_on_function": true,
+    "avoid_surgery_references": false,
+    "other_preferences": "Whenever appropriate, include recovery timelines, what to expect, and faqs"
+  },
+  "seo_focus": [
+    "hand surgeon in New Jersey",
+    "carpal tunnel surgery near me",
+    "wrist arthritis treatment NJ",
+    "HUES orthopedic specialist",
+    "microsurgical tendon repair Ohio"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "client_id": "charm",
+  "name": "CHARM FULL NAME",
+  "brand_name": "charm-full-name",
+  "voice_tone": "NEEDED",
+  "specialty": "NEEDED",
+  "location": "Austin, TX",
+  "target_audience": {
+    "primary": [
+      "NEEDED",
+      "NEEDED"
+    ],
+    "secondary": [
+      "NEEDED",
+      "NEEDED"
+    ]
+  },
+  "brand_keywords": [
+    "NEEDED",
+    "NEEDED",
+    "NEEDED"
+  ],
+  "brand_mission": "NEEDED",
+  "slogan": "NEEDED",
+  "tagline": "NEEDED",
+  "messaging_rules": {
+    "do": [
+      "NEEDED",
+      "NEEDED"
+    ],
+    "donot": [
+      "NEEDED",
+      "NEEDED",
+      "NEEDED"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "NEEDED",
+      "NEEDED"
+    ],
+    "philosophical_strengths": [
+      "NEEDED",
+      "NEEDED"
+    ],
+    "organizational_strengths": [
+      "NEEDED",
+      "NEEDED"
+    ]
+  },
+  "topic_targeting": "NEEDED",
+  "procedure_language": [
+    "NEEDED'",
+    "NEEDED"
+  ],
+  "services": [
+    "NEEDED",
+    "NEEDED"
+  ],
+  "location_references": {
+    "City": "3487 South Mercy Road, Gilbert, AZ 85297",
+    "City2": "6634 E. Baseline Rd #101, Mesa, AZ 85206"
+  },
+  "competitors": [
+    "NEEDED",
+    "NEEDED"
+  ],
+  "content_preferences": {
+    "tone": "NEEDED",
+    "length": "500-1000 words",
+    "include_statistics": true,
+    "include_patient_stories": false,
+    "focus_on_function": true,
+    "avoid_surgery_references": false
+  },
+  "seo_focus": [
+    "NEEDED",
+    "NEEDED"
+  ]
+}

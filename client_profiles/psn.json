@@ -1,0 +1,124 @@
+{
+  "client_id": "psn",
+  "name": "Premier Surgical Network",
+  "brand_name": "premier-surgical-network",
+  "voice_tone": "Professional, compassionate, comprehensive",
+  "specialty": "Breast and General Surgery",
+  "location": "New Jersey",
+  "target_audience": {
+    "primary": [
+      "Women ages 35-70 concerned about breast health or recently diagnosed with breast cancer",
+      "Adults of all ages needing general surgery, including hernia and skin procedures",
+      "High-risk individuals seeking preventive breast care or BRCA counseling"
+    ],
+    "secondary": [
+      "Primary care physicians and OB/GYNs who refer surgical cases",
+      "Oncologists and imaging centers involved in breast cancer care"
+    ]
+  },
+  "brand_keywords": [
+    "breast cancer surgery",
+    "hernia repair",
+    "lumpectomy and mastectomy",
+    "New Jersey surgical care",
+    "patient-centered surgical planning",
+    "board-certified surgeons",
+    "minimally invasive treatment",
+    "hernia sugery",
+    "gastrointestinal procedures",
+    "medical device procedures",
+    "lymph node procedures", 
+    "skin and soft tissue disorders",
+    "minimally invasive procedures",
+    "proactive cancer treatment"
+  ],
+  "brand_mission": "Premier Surgical Network is committed to providing expert, compassionate surgical care to patients facing breast disease, hernias, and complex soft tissue conditions. We help patients make informed decisions and support them every step of the way—from diagnosis to recovery.",
+  "slogan": "Surgical Expertise. Compassionate Care.",
+  "tagline": "Where Patients Come First—Before, During, and After Surgery.",
+  "messaging_rules": {
+    "do": [
+      "Emphasize board-certified, fellowship-trained surgeons",
+      "Use patient-first language: compassionate, empowering, supportive",
+      "Highlight multidisciplinary breast cancer care and accreditation",
+      "Mention minimally invasive techniques and personalized treatment plans"
+    ],
+    "donot": [
+      "Avoid overly technical or jargon-heavy content",
+      "Don’t suggest PSN performs imaging (like mammograms)—they are surgical specialists",
+      "Avoid comparing surgical success rates unless backed by data",
+      "Don’t use terms like 'cheap surgery' or 'quick fix'"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "Accredited breast center",
+      "Specialization in breast cancer, hernia, and soft tissue procedures",
+      "Board-certified and fellowship-trained breast surgeons",
+      "Advanced techniques like hidden scar and nipple-sparing mastectomies",
+      "In-house access to sentinel lymph node biopsies and oncoplastic surgery"
+    ],
+    "philosophical_strengths": [
+      "Every patient receives personalized care, not a one-size-fits-all plan",
+      "Focus on preserving quality of life and long-term outcomes",
+      "Emphasis on shared decision-making and education",
+      "Care coordination across referring providers and oncology teams"
+    ],
+    "organizational_strengths": [
+      "Multiple locations across New Jersey for convenient access",
+      "Recognized in NJ Top Doctors listings",
+      "Seamless surgical coordination post-referral",
+      "Multidisciplinary tumor board participation",
+      "Network of experienced providers across hospital affiliations"
+    ]
+  },
+  "topic_targeting": "Content should be tailored by procedure or condition. Pages about hernias, breast cancer, and cysts should target condition-based search intent. Blogs and secondary pages may focus on procedure education, FAQs, or post-operative expectations.",
+  "procedure_language": [
+    "Use terms like 'lumpectomy,' 'mastectomy,' and 'hernia repair' with clear, patient-friendly explanations",
+    "Describe techniques such as 'minimally invasive surgery' or 'oncoplastic reconstruction' when applicable",
+    "Balance technical accuracy with empathy and reassurance—avoid intimidating medical terms unless explained"
+  ],
+  "services": [
+    "Breast Cancer Surgery",
+    "Hernia Repair",
+    "Cyst and Lipoma Removal",
+    "Lymph Node Biopsies",
+    "Gallbladder and Appendectomy Procedures",
+    "Skin Cancer Surgery",
+    "Regular Breast Exams",
+    "Mammograms",
+    "Biopsy",
+    "Genetic Testing",
+    "Non-Cancerous Breast Disease",
+    "Cellulitis Treatment",
+    "Skin Cancer Treatment",
+    "Cyst Removal",
+    "Loop Recorder Removal",
+    "Lymph Node Procedures"
+  ],
+  "location_references": {
+    "Brick": "74 Brick Boulevard, Building 4, Suite 205, Brick, NJ 08723",
+    "Cape May Court House": "106 Court House South Dennis Road Building 200, Suite 200, Cape May Court House, NJ 08210",
+    "Egg Harbor Township": "4096 English Creek Ave Egg Harbor Township, NJ 08234"
+  },
+  "competitors": [
+    "RWJBarnabas Health Surgical Services",
+    "Hackensack Meridian Breast Surgery",
+    "Summit Health General Surgery"
+  ],
+  "content_preferences": {
+    "tone": "Professional, warm, and empowering",
+    "length": "500–1000 words for blogs",
+    "include_statistics": true,
+    "include_patient_stories": false,
+    "focus_on_function": true,
+    "avoid_surgery_references": false,
+    "other_preferences": "Include clear calls to action and emphasize post-surgical outcomes and recovery."
+  },
+  "seo_focus": [
+    "breast cancer surgeon new jersey",
+    "lumpectomy surgery specialists NJ",
+    "inguinal hernia treatment new jersey",
+    "premier surgical network breast surgery",
+    "minimally invasive cyst removal NJ"
+  ]
+}

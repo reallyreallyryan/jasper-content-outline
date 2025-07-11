@@ -1,0 +1,108 @@
+{
+  "client_id": "mhs-sanaz-harichian",
+  "name": "Sanaz Harirchian",
+  "brand_name": "sanaz-harichian",
+  "voice_tone": "Professional, compassionate, authoritative",
+  "specialty": "Facial Plastic & Reconstructive Surgery",
+  "location": "Houston and Shenandoah, Texas",
+  "target_audience": {
+    "primary": [
+      "Adults aged 30–65 seeking facial rejuvenation",
+      "Individuals considering rhinoplasty or revision rhinoplasty",
+      "Patients recovering from facial trauma or paralysis"
+    ],
+    "secondary": [
+      "Referring dermatologists, ENTs, and general practitioners",
+      "Caregivers and family supporting surgical decisions"
+    ]
+  },
+  "brand_keywords": [
+    "facial plastic surgery",
+    "rhinoplasty",
+    "facial paralysis surgery",
+    "Houston facial plastic surgeon",
+    "fellowship-trained surgeon",
+    "natural-looking results",
+    "board-certified facial plastic surgeon",
+    "minimally invasive techniques"
+  ],
+  "brand_mission": "Dr. Sanaz Harirchian helps patients look and feel like the best version of themselves through artistic, personalized facial plastic and reconstructive surgery grounded in advanced techniques and compassionate care.",
+  "slogan": "Natural Results. Expert Care.",
+  "tagline": "Elevating Confidence Through Facial Aesthetics",
+  "messaging_rules": {
+    "do": [
+      "Use language that conveys elegance, expertise, and personalization",
+      "Reinforce natural-looking outcomes and functional improvements",
+      "Mention dual board certification and fellowship training",
+      "Highlight minimally invasive options and patient-centered planning"
+    ],
+    "donot": [
+      "Avoid overused terms like 'plastic fantastic'",
+      "Don’t use fear-based or sensationalized language",
+      "Avoid generic claims like 'best doctor in town'",
+      "Refrain from using before/after language without context or sensitivity"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "Double board-certified and fellowship-trained",
+      "Expertise in revision rhinoplasty and facial nerve repair",
+      "Uses advanced endoscopic and deep-plane lifting techniques",
+      "Strong outcomes in facial symmetry restoration",
+      "State-of-the-art surgical suite and aesthetic technology"
+    ],
+    "philosophical_strengths": [
+      "Patient outcomes rooted in artistry and empathy",
+      "Customized treatment plans for each unique face",
+      "Focus on holistic, long-term beauty and function",
+      "Values informed consent, education, and transparency"
+    ],
+    "organizational_strengths": [
+      "Private, boutique surgical practice model",
+      "Recognized in media and physician networks",
+      "Continuing education and advanced training commitment",
+      "Streamlined virtual consultation process",
+      "Close ties to local hospitals and rehab facilities"
+    ]
+  },
+  "topic_targeting": "Use condition-first or goal-first structures (e.g., 'Improve Nasal Breathing with Septoplasty') for function-related content; use procedure-first for aesthetic queries (e.g., 'What Is a Deep Plane Facelift?').",
+  "procedure_language": [
+    "Use 'facial rejuvenation' instead of 'anti-aging'",
+    "Explain techniques in patient-friendly terms with optional technical layers",
+    "Clarify the difference between surgical and non-surgical options"
+  ],
+  "services": [
+    "Rhinoplasty",
+    "Facelift & Mini-Lift",
+    "Facial Paralysis Surgery",
+    "Non-Surgical Facial Rejuvenation",
+    "Revision Rhinoplasty",
+    "Facial Reconstruction After Trauma"
+  ],
+  "location_references": {
+    "Main Office": "1900 Saint James Pl Suite 101, Houston, TX 77056",
+    "Secondary Location": "129 Vision Park Blvd Suite 307, Shenandoah, TX 77384",
+    "Future Location": "N/A"
+  },
+  "competitors": [
+    "Dr. Angela Sturm",
+    "Dr. Russell Kridel",
+    "Dr. Michel Siegel"
+  ],
+  "content_preferences": {
+    "tone": "Educated, warm, and aspirational with clinical clarity",
+    "length": "800–1200 words per core procedure page; 600–800 words per blog",
+    "include_statistics": true,
+    "include_patient_stories": true,
+    "focus_on_function": true,
+    "avoid_surgery_references": false,
+    "other_preferences": "Use local SEO geo terms naturally; support all content with headings and bulleted benefit sections"
+  },
+  "seo_focus": [
+    "facial plastic surgeon Houston",
+    "rhinoplasty expert Texas",
+    "facial paralysis surgery specialist Houston",
+    "Sanaz Harirchian facial surgery",
+    "natural facelift techniques Houston"
+  ]
+}

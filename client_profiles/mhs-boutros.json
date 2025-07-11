@@ -1,0 +1,108 @@
+{
+  "client_id": "mhs-sean-boutros",
+  "name": "Sean Boutros",
+  "brand_name": "sean-boutros",
+  "voice_tone": "Professional, compassionate, authoritative",
+  "specialty": "Cosmetic and Reconstructive Plastic Surgery",
+  "location": "Houston, TX",
+  "target_audience": {
+    "primary": [
+      "Women ages 30–65 seeking natural breast augmentation",
+      "Women with breast implants experiencing complications like BII or capsular contracture",
+      "Post-mastectomy patients seeking autologous breast reconstruction"
+    ],
+    "secondary": [
+      "Referring plastic and reconstructive surgeons",
+      "Women’s health specialists and oncologists"
+    ]
+  },
+  "brand_keywords": [
+    "breast augmentation without implants",
+    "fat transfer breast augmentation",
+    "cosmetic DIEP flap",
+    "breast augmentation Houston",
+    "implant-free breast enhancement",
+    "natural tissue breast surgery",
+    "microsurgical breast reconstruction",
+    "long-lasting natural results"
+  ],
+  "brand_mission": "Dr. Sean Boutros provides women with safe, natural alternatives to breast implants using advanced flap-based techniques that restore confidence, function, and aesthetic harmony through their own tissue.",
+  "slogan": "Your Body. Your Tissue. Your Confidence.",
+  "tagline": "Natural breast augmentation and reconstruction without implants.",
+  "messaging_rules": {
+    "do": [
+      "Emphasize natural, implant-free solutions",
+      "Use terms like 'your own tissue', 'living tissue', and 'no foreign material'",
+      "Highlight flap-based techniques like DIEP, PAP, and GAP",
+      "Reinforce safety, longevity, and aesthetic outcomes"
+    ],
+    "donot": [
+      "Use the term 'boob job'",
+      "Overemphasize fat grafting as equivalent to DIEP",
+      "Use generic phrases like 'cosmetic surgery' without specifying natural techniques",
+      "Mention competitor brand names or implant brands"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "Board-certified plastic surgeon with 3,000+ DIEP and flap cases",
+      "Pioneer of All Me Augmentation™—a cosmetic DIEP flap technique",
+      "Published outcomes with 99.9% tissue success rate",
+      "Performs total capsulectomy with immediate natural restoration",
+      "Microsurgical expertise with muscle- and rib-sparing methods"
+    ],
+    "philosophical_strengths": [
+      "Patient-first approach with personalized planning",
+      "Belief in restoring confidence without synthetic materials",
+      "Prioritizes both aesthetic and health outcomes",
+      "Committed to education, transparency, and long-term patient satisfaction"
+    ],
+    "organizational_strengths": [
+      "Specialized DIEP flap surgical center in Houston",
+      "Nationally and internationally published expert",
+      "Efficient pre- and post-op recovery pathways",
+      "Streamlined consult process for local and out-of-state patients",
+      "Part of the broader My Houston Surgeons network"
+    ]
+  },
+  "topic_targeting": "Tailor content to women exploring alternatives to implants, or those seeking resolution for complications; focus on procedures like DIEP flap, fat transfer, and implant removal with natural restoration.",
+  "procedure_language": [
+    "Use 'cosmetic DIEP flap breast augmentation' and 'natural breast augmentation'",
+    "Describe techniques in patient-friendly language with optional technical detail as needed",
+    "Avoid clinical jargon unless used for educational value"
+  ],
+  "services": [
+    "Cosmetic DIEP Flap Breast Augmentation",
+    "Fat Transfer Breast Augmentation",
+    "Breast Implant Removal + Total Capsulectomy",
+    "Flap-Based Breast Reconstruction (PAP, GAP, Stacked DIEP)",
+    "Breast Augmentation with Lift (Mastopexy)",
+    "Mommy Makeover with DIEP Flap"
+  ],
+  "location_references": {
+    "Main Office": "9230 Katy Fwy, Suite 600, Houston, TX 77055",
+    "Secondary Location": "The Woodlands, TX (satellite consultations)",
+    "Future Location": ""
+  },
+  "competitors": [
+    "Kristi Hustak, MD",
+    "Ciaravino Total Beauty",
+    "Regional implant-focused plastic surgeons"
+  ],
+  "content_preferences": {
+    "tone": "Empathetic yet authoritative with a clear, educational focus",
+    "length": "800–1,200 words for blogs; 500–800 for landing pages",
+    "include_statistics": true,
+    "include_patient_stories": false,
+    "focus_on_function": true,
+    "avoid_surgery_references": false,
+    "other_preferences": "Support implant-free education, clarify differences between DIEP and fat transfer, use localized SEO"
+  },
+  "seo_focus": [
+    "breast augmentation without implants Houston",
+    "DIEP flap breast augmentation cosmetic surgery",
+    "breast implant illness treatment Houston",
+    "Sean Boutros breast reconstruction expert",
+    "natural breast augmentation specialist Houston"
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "client_id": "amivie",
+  "name": "Amivie",
+  "brand_name": "Amivie",
+  "voice_tone": "Compassionate, professional, supportive",
+  "specialty": "In-Home Care and I/DD Support Services",
+  "location": "East Coast, including NC, OH, FL",
+  "target_audience": {
+    "primary": [
+      "Seniors needing in-home care",
+      "Individuals with intellectual and developmental disabilities",
+      "Family members and caregivers",
+      "Veterans"
+    ],
+    "secondary": [
+      "Referral coordinators and case managers",
+      "Organizations considering acquisition or partnership"
+    ]
+  },
+  "brand_keywords": [
+    "home care services",
+    "I/DD support services",
+    "respite care",
+    "personal care",
+    "companion care",
+    "private duty care",
+    "community-based services",
+    "individualized support",
+    "veteran services"
+  ],
+  "brand_mission": "To provide compassionate, individualized in-home and community-based care that empowers clients to live with dignity, independence, and support across every stage of life.",
+  "slogan": "Bringing the care you need to live in the place you love.",
+  "tagline": "The Right Care. The Right Person.",
+  "messaging_rules": {
+    "do": [
+      "Emphasize personalized, long-term caregiver relationships",
+      "Use emotional, person-centered language",
+      "Highlight caregiver-client matchmaking and continuity of care",
+      "Reinforce accreditation and low turnover as trust signals"
+    ],
+    "donot": [
+      "Do not refer to clients as 'patients'",
+      "Avoid medicalized or impersonal terminology",
+      "Do not refer to Amivie as a 'clinic' or 'practice'",
+      "Avoid generic promises without proof or trust signals"
+    ]
+  },
+  "brand_differentiators": {
+    "clinical_strengths": [
+      "CARF-accredited for I/DD services",
+      "Matchmaking process for caregiver compatibility",
+      "Certified, background-checked aides and CNAs",
+      "Minimally invasive onboarding for clients and families"
+    ],
+    "philosophical_strengths": [
+      "Individualized care plans tailored to each client",
+      "Client dignity and independence come first",
+      "Deep supervisor involvement and feedback loops",
+      "Focus on emotional and social wellbeing, not just physical needs"
+    ],
+    "organizational_strengths": [
+      "Low caregiver turnover",
+      "Centralized recruiting with care-experienced recruiters",
+      "Tech-enabled care management via WellSky",
+      "Nonprofit partnership with Community Concepts Foundation"
+    ]
+  },
+  "topic_targeting": "Balance condition-focused and service-focused content; alternate between senior home care and I/DD support to appeal to both sides of the audience equally.",
+  "procedure_language": [
+    "Use patient-friendly explanations of services",
+    "Emphasize 'support', 'daily living', 'independence', and 'community'",
+    "Avoid overly clinical or technical jargon unless audience is medical"
+  ],
+  "services": [
+    "Personal Care",
+    "Companion Care",
+    "Private Duty Home Care",
+    "Respite Care",
+    "Community-Based I/DD Services",
+    "Day Support & Residential Programs"
+  ],
+  "location_references": {
+    "Main Office": "",
+    "Secondary Location": "",
+    "Future Location": ""
+  },
+  "competitors": [
+    "Bayada",
+    "Addus HomeCare",
+    "Monarch NC"
+  ],
+  "content_preferences": {
+    "tone": "Warm, respectful, and community-focused",
+    "length": "600–900 words per blog",
+    "include_statistics": true,
+    "include_patient_stories": true,
+    "focus_on_function": true,
+    "avoid_surgery_references": true,
+    "other_preferences": "Always distinguish between senior care and I/DD services in content and messaging"
+  },
+  "seo_focus": [
+    "home care services + North Carolina",
+    "I/DD support + daily living skills",
+    "respite care + NC",
+    "Amivie + home care",
+    "individualized support + I/DD community NC"
+  ]
+}
