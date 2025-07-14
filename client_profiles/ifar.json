@@ -1,80 +1,108 @@
 {
   "client_id": "ifar",
-  "name": "The Institute for Advanced Reconstruction",
-  "brand_name": "the-institute",
-  "voice_tone": "NEEDED",
-  "specialty": "NEEDED",
-  "location": "NEEDED",
+  "name": "Institute for Advanced Reconstruction",
+  "brand_name": "IFAR",
+  "voice_tone": "Professional, compassionate, authoritative",
+  "specialty": "Advanced Reconstructive Surgery and Nerve Disorders",
+  "location": "New Jersey, New York, and Pennsylvania",
   "target_audience": {
     "primary": [
-      "NEEDED",
-      "NEEDED"
+      "Adults with complex nerve disorders such as foot drop or phrenic nerve damage",
+      "Patients with facial paralysis or brachial plexus injuries",
+      "Individuals exploring reconstructive options post-surgery or trauma"
     ],
     "secondary": [
-      "NEEDED",
-      "NEEDED"
+      "Neurologists and orthopedic specialists seeking surgical referral options",
+      "Physical therapists and rehabilitation professionals"
     ]
   },
   "brand_keywords": [
-    "NEEDED",
-    "NEEDED",
-    "NEEDED"
+    "nerve reconstruction surgery",
+    "phrenic nerve treatment",
+    "foot drop surgery specialist",
+    "facial paralysis surgery NJ",
+    "pioneering nerve surgery center",
+    "microsurgical nerve repair",
+    "top reconstructive surgeons",
+    "restore mobility and quality of life"
   ],
-  "brand_mission": "NEEDED",
-  "slogan": "NEEDED",
-  "tagline": "NEEDED",
+  "brand_mission": "To provide world-class, life-changing surgical solutions for patients with complex nerve, paralysis, and reconstructive needs, helping restore function, dignity, and hope.",
+  "slogan": "Restoring Function. Renewing Lives.",
+  "tagline": "Leading Experts in Nerve and Reconstructive Surgery",
   "messaging_rules": {
     "do": [
-      "NEEDED",
-      "NEEDED"
+      "Use patient-first, empathetic language",
+      "Emphasize restoration of movement and quality of life",
+      "Highlight unique surgical expertise and rare procedure access",
+      "Focus on individualized treatment planning and advanced technology"
     ],
     "donot": [
-      "NEEDED",
-      "NEEDED",
-      "NEEDED"
+      "Avoid casual tone or generic surgical language",
+      "Don’t use vague terms like 'pain doctor'",
+      "Avoid implying guaranteed cures—focus on improvements",
+      "Refrain from overusing 'miracle' or overly sensational language"
     ]
   },
   "brand_differentiators": {
     "clinical_strengths": [
-      "NEEDED",
-      "NEEDED"
+      "World-renowned nerve reconstruction surgeons",
+      "Exclusive access to rare procedures like phrenic nerve grafting",
+      "High success rates in complex peripheral nerve surgeries",
+      "Microsurgical expertise for functional restoration",
+      "State-of-the-art surgical suites and diagnostics"
     ],
     "philosophical_strengths": [
-      "NEEDED",
-      "NEEDED"
+      "Compassionate, patient-centered care for rare and life-altering conditions",
+      "Holistic approach that considers physical, emotional, and functional needs",
+      "Clear communication and education throughout the patient journey",
+      "Commitment to clinical excellence and innovation"
     ],
     "organizational_strengths": [
-      "NEEDED",
-      "NEEDED"
+      "Multi-state presence with nationally recognized specialists",
+      "Referral destination for complex nerve cases across the U.S.",
+      "Integrated rehab and follow-up care programs",
+      "Academic affiliations and published clinical research",
+      "Streamlined telehealth and intake coordination for rare diagnoses"
     ]
   },
-  "topic_targeting": "NEEDED",
+  "topic_targeting": "Content should balance awareness-level condition pieces (e.g., 'What is Foot Drop?') with decision-stage procedure content (e.g., 'Surgical Options for Foot Drop'). Mix educational blog posts with FAQ-style content and outcome-focused case studies.",
   "procedure_language": [
-    "NEEDED'",
-    "NEEDED"
+    "Use 'microsurgery' and 'nerve transfer' when clinically accurate",
+    "Explain procedures first in simple, benefit-focused terms, then add clinical detail",
+    "Avoid fear-based descriptions—focus on hope, outcomes, and expertise"
   ],
   "services": [
-    "NEEDED",
-    "NEEDED"
+    "Phrenic Nerve Surgery",
+    "Foot Drop Surgery",
+    "Facial Paralysis Surgery",
+    "Peripheral Nerve Reconstruction",
+    "Pudendal Neuralgia Treatment",
+    "Orthognathic (Jaw) Surgery"
   ],
   "location_references": {
-    "City": "3487 South Mercy Road, Gilbert, AZ 85297",
-    "City2": "6634 E. Baseline Rd #101, Mesa, AZ 85206"
+    "Main Office": "535 Sycamore Ave, Shrewsbury, NJ 07702",
+    "Secondary Location": "820 2nd Ave, Suite 6A, New York, NY 10017",
+    "Future Location": "Coming Soon – Philadelphia, PA"
   },
   "competitors": [
-    "NEEDED",
-    "NEEDED"
+    "Hospital for Special Surgery (HSS)",
+    "Cleveland Clinic Nerve Center",
+    "Johns Hopkins Reconstructive Surgery"
   ],
   "content_preferences": {
-    "tone": "NEEDED",
-    "length": "500-1000 words",
+    "tone": "Professional but accessible; confident and caring",
+    "length": "500–700 words for blogs, 900–1200 for service or conditions pages",
     "include_statistics": true,
-    "include_patient_stories": false,
+    "include_patient_stories": true,
     "focus_on_function": true,
-    "avoid_surgery_references": false
+    "avoid_surgery_references": false,
+    "other_preferences": "Focus on rare condition authority, and include 'when to see a specialist' in most condition blogs"
   },
   "seo_focus": [
-    "NEEDED",
-    "NEEDED"
+    "phrenic nerve surgery NJ",
+    "facial paralysis treatment specialist",
+    "foot drop nerve surgery near me",
+    "nerve decompression for chronic pain",
+    "IFAR reconstructive nerve experts"
   ]
 }
